@@ -7,11 +7,41 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Cadastro de usuários..</ion-title>
+    <ion-title>Cadastro de Usuário</ion-title>
   </ion-navbar>
+  <ion-list>
+    
+      <ion-item>
+        <ion-label>Nome Completo:</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>CPF:</ion-label>
+        <ion-input type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label>E-mail:</ion-label>
+          <ion-input type="mail"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label>Idade:</ion-label>
+          <ion-input type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label>Senha:</ion-label>
+          <ion-input type="password"></ion-input>
+      </ion-item>
+    
+    </ion-list>
+    
+    <div padding>
+        <button ion-button block (click)="goToLoginPage()">Cadastrar</button>
+        <br>
+        <button ion-button block (click)="goToLoginPage2()">Cancelar</button>
+    </div>
 
 </ion-header>
-
 
 <ion-content padding>
 

@@ -10,7 +10,7 @@ import { LoginPage } from '../login/login';
 })
 export class IntroPage {
   objetoMensagem = {
-    mensagem: "Mudamos a maneira como você évisto...",
+    mensagem: "Mudamos a maneira como você é visto...",
   }
   constructor(
     public navCtrl: NavController, 
