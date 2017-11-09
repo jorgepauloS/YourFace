@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
-
-/**
- * Generated class for the CadastroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -17,16 +10,30 @@ import { HomePage } from '../home/home';
 })
 export class CadastroPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCadastroCtrl: AlertController ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastroPage');
   }
   goToLoginPage(){
+    this.showAlert()
     this.navCtrl.push(LoginPage);
   }
   goToLoginPage2(){
     this.navCtrl.push(LoginPage);
   }
+
+  showAlert() {
+    let alert = this.alertCadastroCtrl.create({
+      title: 'Casdastro realizado com sucesso!',
+      subTitle: 'Parabéns por se cadastrar em nossa base de dados!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 }
+
