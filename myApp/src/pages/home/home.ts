@@ -1,27 +1,27 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { CadastroPage } from '../cadastro/cadastro';
+import { LoginPage } from '../login/login';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-  user:any [];
-
   constructor(
     public navCtrl: NavController,
     public alertHomeCtrl:AlertController,
     
   ) {
+  }
 
+  abrirCadastroAluno(){
+    this.navCtrl.push(LoginPage)
   }
-  showAlert() {
-    let alert = this.alertHomeCtrl.create({
-      title: 'Falta implementar função de SAIR!',
-      subTitle: 'Quem pode fazer isso?',
-      buttons: ['OK']
-    });
-    alert.present();
+  abrirCadastroProfessor(){}
+  abrirRelatorio(){}
+  sair(){
+    this.navCtrl.push(LoginPage)
   }
+
 }
