@@ -1,1 +1,14 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]= "conteudo">
+    <ion-content>
+        <ion-list>
+            <button ion-item>Cadastar professor</button>
+            <button ion-item>Cadastar aluno</button>
+            <button ion-item>Relatórios</button>
+            <button ion-item>Editar aluno</button>
+            <button ion-item>Editar professor</button>
+            <button ion-item>Editar minhas informações</button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+<ion-nav [root]="homePage" #conteudo></ion-nav>
+<ion-nav [root]="rootPage" ></ion-nav>

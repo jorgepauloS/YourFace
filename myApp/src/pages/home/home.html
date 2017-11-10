@@ -1,9 +1,13 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Bem-vindo</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <h2>Bem-vindo ao YouFace!</h2>
-</ion-content>
+<ion-toolbar>
+  <button ion-button menuToggle left>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>
+    Bem-vindo senhor:)
+  </ion-title>
+  <ion-buttons end>
+    <button ion-button (click)="showAlert()">
+      <ion-icon name="more"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
