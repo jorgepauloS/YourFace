@@ -70,7 +70,8 @@ export class CadastroPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastroPage');
   }
-  goToLoginPage(){
+  goToLoginPage(dados){
+    console.log(dados)
     this.showAlert()
     this.navCtrl.push(LoginPage);
   }
