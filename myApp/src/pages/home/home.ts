@@ -21,9 +21,11 @@ export class HomePage {
   abrirCadastroAluno(){
     this.navCtrl.push(CadastroAlunoPage)
   }
+
   abrirCadastroProfessor(){
     this.navCtrl.push(CadastroProfessorPage)
   }
+  
   abrirRelatorio(){
     this.navCtrl.push(RelatorioPage)
 

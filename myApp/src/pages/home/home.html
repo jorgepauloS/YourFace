@@ -1,38 +1,21 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Inicio</ion-title>
-  </ion-navbar>
+  <ion-title>Inicio</ion-title>
+
+  <div>
+    <h3>Sejam todos bem vindos ao YourFace</h3>
+    <br>
+  </div>
+
+  <button ion-button block (click)="abrirCadastroProfessor()">
+    Cadastro Professor
+  </button>
+  <button ion-button block (click)="abrirCadastroAluno()">
+    Cadastro Aluno
+  </button>
+  <button ion-button block (click)="abrirRelatorio()">
+    Relatório
+  </button>
+  <button ion-button block (click)="sair()">
+    Sair
+  </button>
 </ion-header>
-
-<div>
-  <h3>Sejam todos bem vindos ao YourFace</h3>
-</div>
-
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <button ion-item (click)="abrirCadastroProfessor()">
-        Cadastro Professor
-      </button>
-      <button ion-item (click)="abrirCadastroAluno()">
-        Cadastro Aluno
-      </button>
-      <button ion-item (click)="abrirRelatorio()">
-        Relatório
-      </button>
-      <button ion-item (click)="sair()">
-        Sair
-      </button>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
