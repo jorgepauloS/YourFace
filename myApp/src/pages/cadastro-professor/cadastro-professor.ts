@@ -10,7 +10,7 @@ import { HomePage } from '../home/home';
 export class CadastroProfessorPage {
 
   public dados = {
-    nomeUsuario : null,
+    nomeProfessor : null,
     cpf : null,
     senha : null,
     senhaConf : null,
@@ -27,7 +27,7 @@ export class CadastroProfessorPage {
 
   public fazerCadastro(): void {
     // Pega as informações do usuário
-    var nomeUsuario = this.dados.nomeUsuario;
+    var nomeProfessor = this.dados.nomeProfessor;
     var cpf = this.dados.cpf;
     var email = this.dados.email;
     var emailConf = this.dados.emailConf;
@@ -53,7 +53,7 @@ export class CadastroProfessorPage {
     }
 
     var usuario: object = {
-      username: nomeUsuario,
+      username: nomeProfessor,
       password: senha,
       email: email
     };
@@ -73,12 +73,10 @@ export class CadastroProfessorPage {
     console.log('ionViewDidLoad CadastroProfessorPage');
   }
 
-
-
   showAlert() {
     let alert = this.alertCadastroCtrl.create({
       title: 'Cadastro realizado com sucesso!',
-      subTitle: 'Parabéns por se cadastrar em nossa base de dados!',
+      subTitle: 'Parabéns por  cadastrar um membro importante!',
       buttons: ['OK']
     });
     alert.present();
