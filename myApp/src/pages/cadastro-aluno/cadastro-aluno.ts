@@ -10,9 +10,8 @@ import { HomePage } from '../home/home';
 export class CadastroAlunoPage {
 
   public dados = {
-    nomeUsuario : null,
+    nomeAluno : null,
     cpf : null,
-    senha : null,
     senhaConf : null,
     curso : null,
     email : null,
@@ -28,44 +27,34 @@ export class CadastroAlunoPage {
 
   public fazerCadastro(): void {
     // Pega as informações do usuário
-    var nomeUsuario = this.dados.nomeUsuario;
+    var nomeAluno = this.dados.nomeAluno;
     var cpf = this.dados.cpf;
     var email = this.dados.email;
-    var curso = this.dados.curso;
     var emailConf = this.dados.emailConf;
-    var senha = this.dados.senha;
-    var SenhaConf = this.dados.senhaConf;
+    var curso = this.dados.curso;
     var idade = this.dados.idade;
-
-    if (senha !== SenhaConf) {
-      senha.innerText = '';
-      SenhaConf.innerText = '';
-      senha.focus();
-      alert('As senhas não são iguais.')
-      return;
-    }
-
-    // Compara se os e-mails digitados são correspondentes
-    if (email !== emailConf) {
-      email.innerText = '';
-      emailConf.innerText = '';
-      email.focus();
-      alert('E-mails não são iguais.');
-      return;
-    }
-
-    var usuario: object = {
-      username: nomeUsuario,
-      password: senha,
-      email: email
-    };
 
     this.navCtrl.push(HomePage);
   }
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastroAlunoPage');
   }
 
+  goToHomePage() {
+    this.showAlert() 
+    this.navCtrl.push(HomePage);
+  }
+
+  goToHomePage2() {
+    this.navCtrl.push(HomePage);
+  }
+  showAlert() {
+    let alert = this.alertCadastroCtrl.create({
+      title: 'Cadastro realizado com sucesso!',
+      subTitle: 'Parabéns por  cadastrar um membro importante!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 }
