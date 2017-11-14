@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { CadastroPage } from '../cadastro/cadastro';
 import { LoginPage } from '../login/login';
+import { RelatorioPage } from '../relatorio/relatorio';
+import { CadastroProofessorPage } from '../cadastro-proofessor/cadastro-proofessor';
+import { CadastroAlunoPage } from '../cadastro-aluno/cadastro-aluno';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -16,10 +19,15 @@ export class HomePage {
   }
 
   abrirCadastroAluno(){
-    this.navCtrl.push(LoginPage)
+    this.navCtrl.push(CadastroAlunoPage)
   }
-  abrirCadastroProfessor(){}
-  abrirRelatorio(){}
+  abrirCadastroProfessor(){
+    this.navCtrl.push(CadastroProofessorPage)
+  }
+  abrirRelatorio(){
+    this.navCtrl.push(RelatorioPage)
+
+  }
   sair(){
     this.navCtrl.push(LoginPage)
   }
