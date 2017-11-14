@@ -1,55 +1,50 @@
+
 <ion-header>
 
+<<<<<<< HEAD
   <ion-navbar color="primary">
     <ion-title>Cadastro Aluno</ion-title>
+=======
+  <ion-navbar>
+    <ion-title>Cadastro de aluno</ion-title>
+>>>>>>> 1a9f6d58343e6120c4ad479ad40840d9f9d287ed
   </ion-navbar>
-
   <ion-list>
+
+    <ion-item>
+      <ion-label>Nome Completo:</ion-label>
+      <ion-input type="text" [(ngModel)]="dados.nomeAluno" id="inputNomeAluno" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>CPF:</ion-label>
+      <ion-input type="number" [(ngModel)]="dados.cpf" class="inputCpf" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>E-mail:</ion-label>
+      <ion-input type="mail" [(ngModel)]="dados.email" class="inputEmail" required></ion-input>
+    </ion-item>
     
-        <ion-item>
-          <ion-label>Nome Completo:</ion-label>
-          <ion-input type="text" [(ngModel)]="dados.nomeUsuario" id="inputNomeUsuario" required></ion-input>
-        </ion-item>
-    
-        <ion-item>
-          <ion-label>CPF:</ion-label>
-          <ion-input type="number" [(ngModel)]="dados.cpf" class="inputCpf" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>E-mail:</ion-label>
-          <ion-input type="mail" [(ngModel)]="dados.email" class="inputEmail" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Curso:</ion-label>
-          <ion-input type="text" [(ngModel)]="dados.curso" id="inputCurso" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Confirme e-mail:</ion-label>
-          <ion-input type="mail" [(ngModel)]="dados.emailConf" class="inputEmail" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Idade:</ion-label>
-          <ion-input type="number" [(ngModel)]="dados.idade" class="inputIdade" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Senha:</ion-label>
-          <ion-input type="password" [(ngModel)]="dados.senha" class="inputSenha" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Confirme senha:</ion-label>
-          <ion-input type="password" [(ngModel)]="dados.senhaConf" class="inputSenha" required></ion-input>
-        </ion-item>
+    <ion-item>
+      <ion-label>Curso:</ion-label>
+      <ion-input type="text" [(ngModel)]="dados.curso" class="inputCurso" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Idade:</ion-label>
+      <ion-input type="number" [(ngModel)]="dados.idade" class="inputIdade" required></ion-input>
+    </ion-item>
   </ion-list>
+
   <div padding>
-    <button ion-button block (click)="goToHomePage(dados)">Cadastrar</button>
+    <button ion-button block (click)="goToHomePage()">Cadastrar</button>
     <br>
     <button ion-button block (click)="goToHomePage2()">Cancelar</button>
   </div>
 
 </ion-header>
 
-
 <ion-content padding>
 
 </ion-content>
-

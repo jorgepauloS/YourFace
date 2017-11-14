@@ -14,6 +14,7 @@ import { CadastroAlunoPage } from '../pages/cadastro-aluno/cadastro-aluno';
 import { RelatorioPage } from '../pages/relatorio/relatorio';
 import { InfomacaoDiretorPage } from '../pages/infomacao-diretor/infomacao-diretor';
 import { CadastroProfessorPage } from '../pages/cadastro-professor/cadastro-professor';
+import { HomeProfessorPage } from '../pages/home-professor/home-professor';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CadastroProfessorPage } from '../pages/cadastro-professor/cadastro-prof
     CadastroProfessorPage,
     InfomacaoDiretorPage,
     RelatorioPage,
+    HomeProfessorPage,
     LoginPage
   ],
   imports: [
@@ -42,6 +44,7 @@ import { CadastroProfessorPage } from '../pages/cadastro-professor/cadastro-prof
     CadastroProfessorPage,
     InfomacaoDiretorPage,
     RelatorioPage,
+    HomeProfessorPage,
     LoginPage
   ],
   providers: [
