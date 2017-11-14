@@ -81,7 +81,7 @@ export class CadastroPage {
 
   showAlert() {
     let alert = this.alertCadastroCtrl.create({
-      title: 'Casdastro realizado com sucesso!',
+      title: 'Cadastro realizado com sucesso!',
       subTitle: 'Parabéns por se cadastrar em nossa base de dados!',
       buttons: ['OK']
     });

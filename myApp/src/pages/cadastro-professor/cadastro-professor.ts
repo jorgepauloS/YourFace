@@ -4,17 +4,16 @@ import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-cadastro-aluno',
-  templateUrl: 'cadastro-aluno.html',
+  selector: 'page-cadastro-professor',
+  templateUrl: 'cadastro-professor.html',
 })
-export class CadastroAlunoPage {
+export class CadastroProfessorPage {
 
   public dados = {
     nomeUsuario : null,
     cpf : null,
     senha : null,
     senhaConf : null,
-    curso : null,
     email : null,
     emailConf: null,
     idade : null,
@@ -31,7 +30,6 @@ export class CadastroAlunoPage {
     var nomeUsuario = this.dados.nomeUsuario;
     var cpf = this.dados.cpf;
     var email = this.dados.email;
-    var curso = this.dados.curso;
     var emailConf = this.dados.emailConf;
     var senha = this.dados.senha;
     var SenhaConf = this.dados.senhaConf;
@@ -62,10 +60,28 @@ export class CadastroAlunoPage {
 
     this.navCtrl.push(HomePage);
   }
-
+  goToHomePage(dados){
+    console.log(dados)
+    this.showAlert()
+    this.navCtrl.push(HomePage);
+  }
+  goToHomePage2(){
+    this.navCtrl.push(HomePage);
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CadastroAlunoPage');
+    console.log('ionViewDidLoad CadastroProfessorPage');
+  }
+
+
+
+  showAlert() {
+    let alert = this.alertCadastroCtrl.create({
+      title: 'Cadastro realizado com sucesso!',
+      subTitle: 'Parabéns por se cadastrar em nossa base de dados!',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

@@ -7,6 +7,10 @@
   </ion-navbar>
 </ion-header>
 
+<div>
+  <h3>Sejam todos bem vindos ao YourFace</h3>
+</div>
+
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
@@ -17,6 +21,9 @@
     <ion-list>
       <button ion-item (click)="abrirCadastroProfessor()">
         Cadastro Professor
+      </button>
+      <button ion-item (click)="abrirCadastroAluno()">
+        Cadastro Aluno
       </button>
       <button ion-item (click)="abrirRelatorio()">
         Relatório

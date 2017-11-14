@@ -4,9 +4,8 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Cadastro Aluno</ion-title>
-  </ion-navbar>>
-
+    <ion-title>Cadastro Professor</ion-title>
+  </ion-navbar>
   <ion-list>
     
         <ion-item>
@@ -23,11 +22,7 @@
           <ion-input type="mail" [(ngModel)]="dados.email" class="inputEmail" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Curso:</ion-label>
-          <ion-input type="text" [(ngModel)]="dados.curso" id="inputCurso" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Confirme e-mail:</ion-label>
+          <ion-label> Confirme e-mail:</ion-label>
           <ion-input type="mail" [(ngModel)]="dados.emailConf" class="inputEmail" required></ion-input>
         </ion-item>
         <ion-item>
@@ -55,4 +50,3 @@
 <ion-content padding>
 
 </ion-content>
-

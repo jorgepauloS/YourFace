@@ -3,7 +3,7 @@ import { NavController, AlertController } from 'ionic-angular';
 import { CadastroPage } from '../cadastro/cadastro';
 import { LoginPage } from '../login/login';
 import { RelatorioPage } from '../relatorio/relatorio';
-import { CadastroProofessorPage } from '../cadastro-proofessor/cadastro-proofessor';
+import { CadastroProfessorPage } from '../cadastro-professor/cadastro-professor';
 import { CadastroAlunoPage } from '../cadastro-aluno/cadastro-aluno';
 @Component({
   selector: 'page-home',
@@ -22,7 +22,7 @@ export class HomePage {
     this.navCtrl.push(CadastroAlunoPage)
   }
   abrirCadastroProfessor(){
-    this.navCtrl.push(CadastroProofessorPage)
+    this.navCtrl.push(CadastroProfessorPage)
   }
   abrirRelatorio(){
     this.navCtrl.push(RelatorioPage)

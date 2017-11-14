@@ -11,9 +11,9 @@ import { IntroPage } from '../pages/intro/intro';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { LoginPage } from '../pages/login/login';
 import { CadastroAlunoPage } from '../pages/cadastro-aluno/cadastro-aluno';
-import { CadastroProofessorPage } from '../pages/cadastro-proofessor/cadastro-proofessor';
 import { RelatorioPage } from '../pages/relatorio/relatorio';
 import { InfomacaoDiretorPage } from '../pages/infomacao-diretor/infomacao-diretor';
+import { CadastroProfessorPage } from '../pages/cadastro-professor/cadastro-professor';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { InfomacaoDiretorPage } from '../pages/infomacao-diretor/infomacao-diret
     IntroPage,
     CadastroPage,
     CadastroAlunoPage,
-    CadastroProofessorPage,
+    CadastroProfessorPage,
     InfomacaoDiretorPage,
     RelatorioPage,
     LoginPage
@@ -39,7 +39,7 @@ import { InfomacaoDiretorPage } from '../pages/infomacao-diretor/infomacao-diret
     IntroPage,
     CadastroPage,
     CadastroAlunoPage,
-    CadastroProofessorPage,
+    CadastroProfessorPage,
     InfomacaoDiretorPage,
     RelatorioPage,
     LoginPage
