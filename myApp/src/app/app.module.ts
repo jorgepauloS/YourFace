@@ -15,6 +15,7 @@ import { RelatorioPage } from '../pages/relatorio/relatorio';
 import { InfomacaoDiretorPage } from '../pages/infomacao-diretor/infomacao-diretor';
 import { CadastroProfessorPage } from '../pages/cadastro-professor/cadastro-professor';
 import { HomeProfessorPage } from '../pages/home-professor/home-professor';
+import { ServiceProvider } from '../providers/service/service';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { HomeProfessorPage } from '../pages/home-professor/home-professor';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ServiceProvider,
     
   ]
 })
