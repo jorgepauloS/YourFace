@@ -37,10 +37,12 @@ export class CadastroAlunoPage {
     this.navCtrl.push(HomePage);
   }
 
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastroAlunoPage');
   }
-
+  getPhoto(){
+  }
   goToHomePage() {
     this.showAlert() 
     this.navCtrl.push(HomePage);

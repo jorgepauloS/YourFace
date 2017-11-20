@@ -1,13 +1,7 @@
-
 <ion-header>
 
-<<<<<<< HEAD
-  <ion-navbar color="primary">
-    <ion-title>Cadastro Aluno</ion-title>
-=======
   <ion-navbar>
     <ion-title>Cadastro de aluno</ion-title>
->>>>>>> 1a9f6d58343e6120c4ad479ad40840d9f9d287ed
   </ion-navbar>
   <ion-list>
 
@@ -25,7 +19,7 @@
       <ion-label>E-mail:</ion-label>
       <ion-input type="mail" [(ngModel)]="dados.email" class="inputEmail" required></ion-input>
     </ion-item>
-    
+
     <ion-item>
       <ion-label>Curso:</ion-label>
       <ion-input type="text" [(ngModel)]="dados.curso" class="inputCurso" required></ion-input>
@@ -36,6 +30,30 @@
       <ion-input type="number" [(ngModel)]="dados.idade" class="inputIdade" required></ion-input>
     </ion-item>
   </ion-list>
+
+  <ion-card>
+
+    <img src="foto" />
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="primary" icon-left (click)="getPhoto('picture')">
+          <ion-icon name='camera'></ion-icon>
+          Câmera
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="primary" icon-left (click)="getPhoto('gallery')">
+          <ion-icon name='albums'></ion-icon>
+          Galeria
+        </button>
+      </ion-col>
+
+    </ion-row>
+    
+  </ion-card>
+
+
+
 
   <div padding>
     <button ion-button block (click)="goToHomePage()">Cadastrar</button>
