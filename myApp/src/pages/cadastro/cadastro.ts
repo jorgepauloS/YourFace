@@ -144,7 +144,7 @@ export class CadastroPage {
 
   }
   goToLoginPage2() {
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.push(HomePage);
   }
 
   showAlert() {

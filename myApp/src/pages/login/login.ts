@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CadastroPage } from '../cadastro/cadastro';
 import { HomePage } from '../home/home';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @IonicPage()
 @Component({
@@ -11,13 +13,16 @@ import { HomePage } from '../home/home';
 export class LoginPage {
   public userCredenciais = {
     login: null,
-    senha: null
-
+    passwd: null
   };
+
+
   constructor(
     public navCtrl: NavController,
-     public navParams: NavParams,
-     public alertLoginCtrl: AlertController ) {
+    public navParams: NavParams,
+    public alertLoginCtrl: AlertController,
+    public http: Http
+  ) {
   }
   fazerLogin(){
     //Falta implementar por causa do banco de dados.
@@ -26,13 +31,26 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  goToCadastroPage(){
-    this.navCtrl.push(CadastroPage);
-  }
+
   //teste do login, depois não servirá mais.
   goToHome(){
-    this.showAlert()
-    this.navCtrl.push(HomePage);
+
+    var user:any;
+
+    this.http.post('http://localhost:3000/login', this.userCredenciais).map(res => res.json())
+      .subscribe(res => {
+        console.log(res);
+        
+        if (res.token) {this.navCtrl.push(HomePage);}
+
+      }, (error) => {
+        console.log("erro " + error);
+      });
+      
+
+
+    //this.showAlert()
+    //this.navCtrl.push(HomePage);
   }
   showAlert() {
     let alert = this.alertLoginCtrl.create({
