@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @IonicPage()
 @Component({
@@ -20,7 +22,9 @@ export class CadastroAlunoPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public alertCadastroCtrl: AlertController ) {
+    public alertCadastroCtrl: AlertController,
+    public http:Http
+   ) {
   }
 
   TestaCPF(strCPF) {
@@ -128,4 +132,19 @@ export class CadastroAlunoPage {
     });
     alert.present();
   }
+
+  titulos:string;
+
+
+  mostraJson(){
+    this.http.get('https://jsonplaceholder.typicode.com/posts/1').map(res => res.json())
+    .subscribe(res => {
+      this.titulos = JSON.stringify([res]);
+      console.log(res);
+    }, (error)=>{
+      console.log("erro "+error);
+  });
+  }
+
+
 }

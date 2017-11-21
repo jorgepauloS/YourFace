@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @IonicPage()
 @Component({
@@ -41,7 +43,8 @@ export class CadastroPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public alertCadastroCtrl: AlertController) {
+    public alertCadastroCtrl: AlertController,
+    public http:Http) {
   }
   fazerCadastro(): boolean {
     // Pega as informações do usuário
@@ -118,7 +121,21 @@ export class CadastroPage {
   }
   goToLoginPage(dados) {
     if (this.fazerCadastro()){
+
+      this.http.post('https://jsonplaceholder.typicode.com/posts/1', dados ).map(res => res.json())
+      .subscribe(res => {
+        console.log(res);
+      }, (error)=>{
+        console.log("erro "+error);
+    });
+
+
       console.log(dados)
+
+
+
+
+
       this.showAlert()
       this.navCtrl.push(LoginPage);
     }else{

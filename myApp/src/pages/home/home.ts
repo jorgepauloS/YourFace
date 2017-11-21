@@ -5,6 +5,8 @@ import { LoginPage } from '../login/login';
 import { RelatorioPage } from '../relatorio/relatorio';
 import { CadastroProfessorPage } from '../cadastro-professor/cadastro-professor';
 import { CadastroAlunoPage } from '../cadastro-aluno/cadastro-aluno';
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -13,8 +15,7 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    public alertHomeCtrl:AlertController,
-    
+    public alertHomeCtrl:AlertController    
   ) {
   }
 

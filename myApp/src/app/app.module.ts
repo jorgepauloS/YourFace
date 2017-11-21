@@ -16,6 +16,8 @@ import { InfomacaoDiretorPage } from '../pages/infomacao-diretor/infomacao-diret
 import { CadastroProfessorPage } from '../pages/cadastro-professor/cadastro-professor';
 import { HomeProfessorPage } from '../pages/home-professor/home-professor';
 import { ServiceProvider } from '../providers/service/service';
+import { HttpModule } from '@angular/http';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,7 @@ import { ServiceProvider } from '../providers/service/service';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    
+    HttpModule    
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,5 +1,6 @@
 <ion-header>
 
+
   <ion-navbar text-center color="primary">
     <ion-title text-center >Cadastro de aluno</ion-title>
   </ion-navbar>
@@ -7,7 +8,13 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
+
+
+      <h1>{{titulos}}</h1>
+ 
+
+
+  <ion-list> 
 
     <ion-item>
       <ion-label>Nome Completo:</ion-label>
@@ -68,5 +75,9 @@
     <br>
     <button ion-button block (click)="goToHomePage2()">Cancelar</button>
   </div>
+
+
+  <button ion-button block (click)="mostraJson()">mostraJson</button>
+  
 
 </ion-content>
