@@ -1,26 +1,27 @@
 <ion-header>
-  <ion-navbar color="blue">
-    <ion-title>Cadastro de Usuário</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Cadastro de usuário</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
   <h1 class="titulo" text-center>Cadastre-se como diretor</h1>
+  
   <ion-list>
     <ion-item>
       <ion-label>Nome Completo:</ion-label>
-      <ion-input type="text" [(ngModel)]="dados.nomeUsuario" id="inputNomeUsuario" required></ion-input>
+      <ion-input type="text" [(ngModel)]="dados.nomeUsuario" id="inputNomeUsuario"  autofocus required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>CPF:</ion-label>
-      <ion-input type="number" maxlength="11" [(ngModel)]="dados.cpf" class="inputCpf" required></ion-input>
+      <ion-input type="number" maxlength="11" [(ngModel)]="dados.cpf" class="inputCpf"   required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>E-mail:</ion-label>
-      <ion-input type="mail" [(ngModel)]="dados.email" class="inputEmail" required></ion-input>
+      <ion-input type="mail" [(ngModel)]="dados.email" class="inputEmail"   required></ion-input>
     </ion-item>
 
     <ion-item>

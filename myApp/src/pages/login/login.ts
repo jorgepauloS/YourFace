@@ -9,13 +9,19 @@ import { HomePage } from '../home/home';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  public userCredenciais = {
+    login: null,
+    senha: null
 
+  };
   constructor(
     public navCtrl: NavController,
      public navParams: NavParams,
      public alertLoginCtrl: AlertController ) {
   }
-
+  fazerLogin(){
+    //Falta implementar por causa do banco de dados.
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
@@ -23,6 +29,7 @@ export class LoginPage {
   goToCadastroPage(){
     this.navCtrl.push(CadastroPage);
   }
+  //teste do login, depois não servirá mais.
   goToHome(){
     this.showAlert()
     this.navCtrl.push(HomePage);

@@ -96,14 +96,17 @@ export class CadastroPage {
     }
     
     // Cria o objeto usuario e o cadastro no BD
-    var usuario: object = {
-      username: nomeUsuario,
-      password: senha,
-      email: email
+    var usuarioDiretor: object = {
+      nomeUsuario: nomeUsuario,
+      cpf: cpf,
+      senha: senha,
+      senhaConf: SenhaConf,
+      email: email,
+      emailConf: emailConf,
     };
     //Falta integrarco o banco.
     /*if (this.usuarioDAO.getUser()){
-      this.usuarioDAO.cadastrar(usuario);
+      this.usuarioDAO.cadastrar(usuarioDiretor);
       return true;
     }*/
   
@@ -130,7 +133,7 @@ export class CadastroPage {
   showAlert() {
     let alert = this.alertCadastroCtrl.create({
       title: 'Cadastro realizado com sucesso!',
-      subTitle: 'Parabéns por se cadastrar em nossa base de dados!',
+      subTitle: 'Parabéns por se cadastrar em nossa base de dados senhor diretor(a)!',
       buttons: ['OK']
     });
     alert.present();
