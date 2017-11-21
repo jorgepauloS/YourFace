@@ -1,16 +1,13 @@
-<!--
-  Generated template for the CadastroPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color="blue">
     <ion-title>Cadastro de Usuário</ion-title>
   </ion-navbar>
-  <ion-list>
+</ion-header>
 
+<ion-content padding>
+
+  <h1 class="titulo" text-center>Cadastre-se como diretor</h1>
+  <ion-list>
     <ion-item>
       <ion-label>Nome Completo:</ion-label>
       <ion-input type="text" [(ngModel)]="dados.nomeUsuario" id="inputNomeUsuario" required></ion-input>
@@ -18,24 +15,24 @@
 
     <ion-item>
       <ion-label>CPF:</ion-label>
-      <ion-input type="number" [(ngModel)]="dados.cpf" class="inputCpf" required></ion-input>
+      <ion-input type="number" maxlength="11" [(ngModel)]="dados.cpf" class="inputCpf" required></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label>E-mail:</ion-label>
       <ion-input type="mail" [(ngModel)]="dados.email" class="inputEmail" required></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label> Confirme e-mail:</ion-label>
       <ion-input type="mail" [(ngModel)]="dados.emailConf" class="inputEmail" required></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label>Idade:</ion-label>
-      <ion-input type="number" [(ngModel)]="dados.idade" class="inputIdade" required></ion-input>
-    </ion-item>
+
     <ion-item>
       <ion-label>Senha:</ion-label>
       <ion-input type="password" [(ngModel)]="dados.senha" class="inputSenha" required></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label>Confirme senha:</ion-label>
       <ion-input type="password" [(ngModel)]="dados.senhaConf" class="inputSenha" required></ion-input>
@@ -48,9 +45,4 @@
     <br>
     <button ion-button block (click)="goToLoginPage2()">Cancelar</button>
   </div>
-
-</ion-header>
-
-<ion-content padding>
-
 </ion-content>
