@@ -10,14 +10,12 @@ import { HomePage } from '../home/home';
 export class CadastroAlunoPage {
 
   public dados = {
-    nomeAluno : null,
+    nomeUsuario : null,
     cpf : null,
-    senhaConf : null,
-    curso : null,
     email : null,
     emailConf: null,
+    curso: null,
     idade : null,
-
   };
   constructor(
     public navCtrl: NavController,
@@ -25,27 +23,98 @@ export class CadastroAlunoPage {
     public alertCadastroCtrl: AlertController ) {
   }
 
-  public fazerCadastro(): void {
-    // Pega as informações do usuário
-    var nomeAluno = this.dados.nomeAluno;
+  TestaCPF(strCPF) {
+    let Soma;
+    let Resto;
+    Soma = 0;
+    if (strCPF == "00000000000") return false;
+
+    for (let i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+    Soma = 0;
+    for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+    return true;
+  }
+
+  fazerCadastroAluno(): boolean {
+    var nomeUsuario = this.dados.nomeUsuario;
     var cpf = this.dados.cpf;
     var email = this.dados.email;
     var emailConf = this.dados.emailConf;
     var curso = this.dados.curso;
     var idade = this.dados.idade;
 
-    this.navCtrl.push(HomePage);
-  }
+    if (nomeUsuario == undefined) {
+      alert('O login é um campo obrigatório.');
+      return;
+    }
+    if (cpf == undefined) {
+      alert('O CPF é um campo obrigatório.');
+      return;
+    }
+    if (email == undefined) {
+      alert('O e-mail é um campo obrigatório.');
+      return;
+    }
+    if (emailConf == undefined) {
+      alert('O e-mail de confimação é um campo obrigatório.');
+      return;
+    }
+    if (email !== emailConf) {
+      alert('E-mails não são iguais.');
+      return;
+    }
+    if (this.TestaCPF(cpf) == false) {
+      alert('Cpf inválido.');
+      return;
+    }
+    if (curso == undefined) {
+      alert('O campo curso/série é um campo obrigatório.');
+      return;
+    }
+    if (idade == undefined) {
+      alert('O campo idade é um campo obrigatório.');
+      return;
+    }
 
+    // Cria o objeto usuario e o cadastro no BD
+    var usuarioAluno: object = {
+      nomeUsuario: nomeUsuario,
+      cpf: cpf,
+      email: email,
+      emailConf: emailConf,
+      curso: curso,
+    };
+    //Falta integrarco o banco.
+    /*if (this.usuarioDAO.getUser()){
+      this.usuarioDAO.cadastrar(usuarioAluno);
+      return true;
+    }*/
+
+    return true;
+  }
+  goToHomePage(dados) {
+    if (this.fazerCadastroAluno()) {
+      console.log(dados)
+      this.showAlert()
+      this.navCtrl.push(HomePage);
+    } else {
+      console.log("Algun campo no cadastro está errado!")
+    }
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastroAlunoPage');
   }
   getPhoto(){
-  }
-  goToHomePage() {
-    this.showAlert() 
-    this.navCtrl.push(HomePage);
   }
 
   goToHomePage2() {

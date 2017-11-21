@@ -1,18 +1,22 @@
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>Cadastro de aluno</ion-title>
+  <ion-navbar text-center color="primary">
+    <ion-title text-center >Cadastro de aluno</ion-title>
   </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
   <ion-list>
 
     <ion-item>
       <ion-label>Nome Completo:</ion-label>
-      <ion-input type="text" [(ngModel)]="dados.nomeAluno" id="inputNomeAluno" required></ion-input>
+      <ion-input type="text" [(ngModel)]="dados.nomeUsuario" id="inputNomeUsuario" autofocus required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>CPF:</ion-label>
-      <ion-input type="number" [(ngModel)]="dados.cpf" class="inputCpf" required></ion-input>
+      <ion-input type="number" maxlength="11" [(ngModel)]="dados.cpf" class="inputCpf" required></ion-input>
     </ion-item>
 
     <ion-item>
@@ -21,7 +25,13 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Curso:</ion-label>
+      <ion-label> Confirme e-mail:</ion-label>
+      <ion-input type="mail" [(ngModel)]="dados.emailConf" class="inputEmail" required></ion-input>
+    </ion-item>
+
+    
+    <ion-item>
+      <ion-label>Curso/série:</ion-label>
       <ion-input type="text" [(ngModel)]="dados.curso" class="inputCurso" required></ion-input>
     </ion-item>
 
@@ -29,6 +39,7 @@
       <ion-label>Idade:</ion-label>
       <ion-input type="number" [(ngModel)]="dados.idade" class="inputIdade" required></ion-input>
     </ion-item>
+
   </ion-list>
 
   <ion-card>
@@ -49,20 +60,13 @@
       </ion-col>
 
     </ion-row>
-    
+
   </ion-card>
-
-
-
 
   <div padding>
     <button ion-button block (click)="goToHomePage()">Cadastrar</button>
     <br>
     <button ion-button block (click)="goToHomePage2()">Cancelar</button>
   </div>
-
-</ion-header>
-
-<ion-content padding>
 
 </ion-content>
