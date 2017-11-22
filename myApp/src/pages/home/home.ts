@@ -5,6 +5,7 @@ import { LoginPage } from '../login/login';
 import { RelatorioPage } from '../relatorio/relatorio';
 import { CadastroProfessorPage } from '../cadastro-professor/cadastro-professor';
 import { CadastroAlunoPage } from '../cadastro-aluno/cadastro-aluno';
+import { RemoverUsuariosPage } from '../remover-usuarios/remover-usuarios';
 
 
 @Component({
@@ -35,7 +36,10 @@ export class HomePage {
 
   }
   sair(){
-    this.navCtrl.push(LoginPage)
+    this.navCtrl.setRoot(LoginPage)
+  }
+  removerUsuarios(){
+    this.navCtrl.push(RemoverUsuariosPage)
   }
 
 }

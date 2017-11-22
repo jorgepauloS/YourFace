@@ -17,6 +17,7 @@ import { CadastroProfessorPage } from '../pages/cadastro-professor/cadastro-prof
 import { HomeProfessorPage } from '../pages/home-professor/home-professor';
 import { ServiceProvider } from '../providers/service/service';
 import { HttpModule } from '@angular/http';
+import { RemoverUsuariosPage } from '../pages/remover-usuarios/remover-usuarios';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { HttpModule } from '@angular/http';
     InfomacaoDiretorPage,
     RelatorioPage,
     HomeProfessorPage,
-    LoginPage
+    LoginPage,
+    RemoverUsuariosPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { HttpModule } from '@angular/http';
     InfomacaoDiretorPage,
     RelatorioPage,
     HomeProfessorPage,
-    LoginPage
+    LoginPage,
+    RemoverUsuariosPage
   ],
   providers: [
     StatusBar,

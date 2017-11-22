@@ -109,44 +109,38 @@ export class CadastroPage {
     };
     //Falta integrarco o banco.
     /*if (this.usuarioDAO.getUser()){
+       this.http.post('', dados ).map(res => res.json())
+      .subscribe(res => {
+        console.log(res);
+      }, (error)=>{
+        console.log("erro "+error);
+    });
       this.usuarioDAO.cadastrar(usuarioDiretor);
       return true;
     }*/
   
+
     return true;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastroPage');
   }
-  goToLoginPage(dados) {
+
+  goToHomePage(dados) {
     if (this.fazerCadastro()){
-
-      this.http.post('https://jsonplaceholder.typicode.com/posts/1', dados ).map(res => res.json())
-      .subscribe(res => {
-        console.log(res);
-      }, (error)=>{
-        console.log("erro "+error);
-    });
-
-
       console.log(dados)
-
-
-
-
-
       this.showAlert()
-      this.navCtrl.push(LoginPage);
+      this.navCtrl.setRoot(HomePage);
     }else{
       console.log("Algun campo no cadastro está errado!")
     }
 
   }
-  goToLoginPage2() {
-    this.navCtrl.push(HomePage);
+  goToHomePage2() {
+    this.navCtrl.setRoot(HomePage);
   }
-
+  
   showAlert() {
     let alert = this.alertCadastroCtrl.create({
       title: 'Cadastro realizado com sucesso!',
@@ -155,5 +149,14 @@ export class CadastroPage {
     });
     alert.present();
   }
-}
 
+  cadastraUser(data){
+    this.http.post('http://localhost:3000/coordenador/create', data ).map(res => res.json())
+      .subscribe(res => {
+        console.log(res);
+      }, (error)=>{
+        console.log("erro "+error);
+    });
+    
+  }
+}

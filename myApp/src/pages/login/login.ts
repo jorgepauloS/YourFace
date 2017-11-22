@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { CadastroPage } from '../cadastro/cadastro';
 import { HomePage } from '../home/home';
 import { Http, Headers } from '@angular/http';
@@ -21,23 +21,21 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertLoginCtrl: AlertController,
+    public loadingCtrl: LoadingController,
     public http: Http
   ) {
   }
-  fazerLogin(){
+  fazerLogin() {
     //Falta implementar por causa do banco de dados.
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
-
   //teste do login, depois não servirá mais.
-  goToHome(){
-
-    var user:any;
-
-    this.http.post('http://localhost:3000/login', this.userCredenciais).map(res => res.json())
+  goToHome() {
+    console.log(this.userCredenciais)
+    /*this.http.post('http://localhost:3000/login', this.userCredenciais).map(res => res.json())
       .subscribe(res => {
         console.log(res);
         
@@ -46,11 +44,9 @@ export class LoginPage {
       }, (error) => {
         console.log("erro " + error);
       });
-      
-
-
-    //this.showAlert()
-    //this.navCtrl.push(HomePage);
+      */
+    this.navCtrl.setRoot(HomePage)
+    this.showAlert()
   }
   showAlert() {
     let alert = this.alertLoginCtrl.create({
@@ -59,5 +55,16 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Aguarde por favor...",
+      duration: 2000
+      
+    });
+    loader.present();
+
+
   }
 }

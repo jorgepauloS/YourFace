@@ -12,7 +12,7 @@ import { LoginPage } from '../pages/login/login';
 })
 export class MyApp {
   public rootPage:any = IntroPage;     
-
+  
   constructor(
     platform: Platform, 
     statusBar: StatusBar, 
