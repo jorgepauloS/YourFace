@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LoginPage } from '../login/login';
 
 
 @IonicPage()
@@ -8,6 +9,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'remover-usuarios.html',
 })
 export class RemoverUsuariosPage {
+
   items : any;
   lista=[{id:1, cpf:"12345"},
     { id: 2, cpf: "23452" },
@@ -15,6 +17,11 @@ export class RemoverUsuariosPage {
     { id: 4, cpf: "0111223" }];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.initializeItems();
+    this.acao()
+  }
+  acao() {
+    this.navCtrl.push(LoginPage);
+
   }
 
   initializeItems() {
