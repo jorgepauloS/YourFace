@@ -33,10 +33,10 @@ export class CadastroPage {
   }
 
   public dados = {
-    nomeUsuario: null,
+    name: null,
     cpf: null,
-    senha: null,
-    senhaConf: null,
+    password: null,
+    passwordConf: null,
     email: null,
     emailConf: null,
   };
@@ -48,14 +48,14 @@ export class CadastroPage {
   }
   fazerCadastro(): boolean {
     // Pega as informações do usuário
-    var nomeUsuario = this.dados.nomeUsuario;
+    var name = this.dados.name;
     var cpf = this.dados.cpf;
     var email = this.dados.email;
     var emailConf = this.dados.emailConf;
-    var senha = this.dados.senha;
-    var SenhaConf = this.dados.senhaConf;
+    var senha = this.dados.password;
+    var SenhaConf = this.dados.passwordConf;
 
-    if (nomeUsuario == undefined) {
+    if (name == undefined) {
       alert('O login é um campo obrigatório.');
       return;
     }
@@ -97,46 +97,36 @@ export class CadastroPage {
       alert('Cpf inválido.');
       return;
     }
-    
     // Cria o objeto usuario e o cadastro no BD
     var usuarioDiretor: object = {
-      nomeUsuario: nomeUsuario,
+      name: name,
       cpf: cpf,
-      senha: senha,
-      senhaConf: SenhaConf,
+      password: senha,
       email: email,
-      emailConf: emailConf,
     };
-    //Falta integrarco o banco.
-    /*if (this.usuarioDAO.getUser()){
-       this.http.post('', dados ).map(res => res.json())
-      .subscribe(res => {
-        console.log(res);
-      }, (error)=>{
-        console.log("erro "+error);
-    });
-      this.usuarioDAO.cadastrar(usuarioDiretor);
-      return true;
-    }*/
-  
 
-    return true;
+    var resposta:boolean=false;
+
+    this.http.post('http://localhost:3000/coordenador/create', usuarioDiretor).map(res => res.json())
+    .subscribe(res => {
+      console.log(res);
+      if (res.error){
+        console.log("Algun campo no cadastro está errado e/ou cpf já cadastrado!")
+      }else{
+        this.showAlert()
+        this.navCtrl.setRoot(HomePage);;
+      }
+    }, (error) => {
+      console.log("erro " + error);
+      console.log("Algun campo no cadastro está errado e/ou cpf já cadastrado!")
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastroPage');
   }
 
-  goToHomePage(dados) {
-    if (this.fazerCadastro()){
-      console.log(dados)
-      this.showAlert()
-      this.navCtrl.setRoot(HomePage);
-    }else{
-      console.log("Algun campo no cadastro está errado!")
-    }
 
-  }
   goToHomePage2() {
     this.navCtrl.setRoot(HomePage);
   }

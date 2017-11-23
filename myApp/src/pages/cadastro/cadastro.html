@@ -5,11 +5,10 @@
 </ion-header>
 
 <ion-content padding>
-  
   <ion-list>
     <ion-item>
       <ion-label>Nome Completo:</ion-label>
-      <ion-input type="text" [(ngModel)]="dados.nomeUsuario" id="inputNomeUsuario"  autofocus required></ion-input>
+      <ion-input type="text" [(ngModel)]="dados.name" id="inputNomeUsuario"  autofocus required></ion-input>
     </ion-item>
 
     <ion-item>
@@ -29,18 +28,18 @@
 
     <ion-item>
       <ion-label>Senha:</ion-label>
-      <ion-input type="password" [(ngModel)]="dados.senha" class="inputSenha" required></ion-input>
+      <ion-input type="password" [(ngModel)]="dados.password" class="inputSenha" required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Confirme senha:</ion-label>
-      <ion-input type="password" [(ngModel)]="dados.senhaConf" class="inputSenha" required></ion-input>
+      <ion-input type="password" [(ngModel)]="dados.passwordConf" class="inputSenha" required></ion-input>
     </ion-item>
 
   </ion-list>
 
   <div padding>
-    <button ion-button block (click)="goToHomePage(dados)">Cadastrar</button>
+    <button ion-button block (click)="fazerCadastro()">Cadastrar</button>
     <br>
     <button ion-button block (click)="goToHomePage2()">Cancelar</button>
   </div>

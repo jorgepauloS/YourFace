@@ -12,8 +12,8 @@ import 'rxjs/add/operator/map';
 })
 export class LoginPage {
   public userCredenciais = {
-    login: null,
-    passwd: null
+    cpf: null,
+    password: null
   };
 
 
@@ -35,18 +35,19 @@ export class LoginPage {
   //teste do login, depois não servirá mais.
   goToHome() {
     console.log(this.userCredenciais)
-    /*this.http.post('http://localhost:3000/login', this.userCredenciais).map(res => res.json())
+    this.http.post('http://localhost:3000/login', this.userCredenciais).map(res => res.json())
       .subscribe(res => {
         console.log(res);
+        if (res.token) {
+          this.navCtrl.push(HomePage);
         
-        if (res.token) {this.navCtrl.push(HomePage);}
-
+        }
       }, (error) => {
         console.log("erro " + error);
       });
-      */
-    this.navCtrl.setRoot(HomePage)
-    this.showAlert()
+
+    //this.navCtrl.setRoot(HomePage)
+    //this.showAlert()
   }
   showAlert() {
     let alert = this.alertLoginCtrl.create({
