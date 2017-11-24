@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @IonicPage()
 @Component({
@@ -10,14 +12,12 @@ import { HomePage } from '../home/home';
 export class CadastroProfessorPage {
 
   public dados = {
-    nomeUsuario : null,
-    cpf : null,
-    senha : null,
-    senhaConf : null,
-    email : null,
-    emailConf: null,
-    disciplina : null,
-
+    nomeUsuario: null,
+    cpf: null,
+    senha: null,
+    senhaConf: null,
+    email: null,
+    emailConf: null
   };
   TestaCPF(strCPF) {
     let Soma;
@@ -43,7 +43,8 @@ export class CadastroProfessorPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public alertCadastroCtrl: AlertController) {
+    public alertCadastroCtrl: AlertController,
+    public http: Http) {
   }
   fazerCadastroProfessor(): boolean {
     // Pega as informações do usuário
@@ -53,7 +54,6 @@ export class CadastroProfessorPage {
     var emailConf = this.dados.emailConf;
     var senha = this.dados.senha;
     var SenhaConf = this.dados.senhaConf;
-    var disciplina = this.dados.disciplina;
 
     if (nomeUsuario == undefined) {
       alert('O login é um campo obrigatório.');
@@ -79,10 +79,6 @@ export class CadastroProfessorPage {
       alert('A senha de confimação é um campo obrigatório.');
       return;
     }
-    if (disciplina == undefined) {
-      alert('O campo disciplina é um campo obrigatório.');
-      return;
-    }
     if (senha.length < 8) {
       alert('A senha deve ter pelo menos "8" caracteres.');
       return;
@@ -103,44 +99,45 @@ export class CadastroProfessorPage {
     }
 
     // Cria o objeto usuario e o cadastro no BD
-    var usuarioProfesso: object = {
-      nomeUsuario: nomeUsuario,
+    var usuarioProfessor: object = {
+      name: nomeUsuario,
       cpf: cpf,
-      senha: senha,
-      senhaConf: SenhaConf,
-      email: email,
-      emailConf: emailConf,
-      disciplina: disciplina,
+      password: senha,
+      email: email
     };
-    //Falta integrarco o banco.
-    /*if (this.usuarioDAO.getUser()){
-      this.usuarioDAO.cadastrar(usuarioProfessor);
-      return true;
-    }*/
+    this.http.post('http://localhost:3000/professor/create', usuarioProfessor).map(res => res.json())
+      .subscribe(res => {
+        console.log(res);
+        if (res.error) {
+          console.log(usuarioProfessor)
+          this.showAlertErro()
+        } else {
+          this.showAlert()
+          this.navCtrl.setRoot(HomePage);;
+        }
+      }, (error) => {
+        console.log(usuarioProfessor)
+        console.log("erro " + error);
+      });
+  }
 
-    return true;
-  }
-  goToHomePage(dados){
-    if (this.fazerCadastroProfessor()) {
-      console.log(dados)
-      this.showAlert()
-      this.navCtrl.push(HomePage);
-    } else {
-      console.log("Algun campo no cadastro está errado!")
-    }
-  }
-  goToHomePage2(){
+  goToHomePage2() {
     this.navCtrl.push(HomePage);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CadastroProfessorPage');
   }
 
   showAlert() {
     let alert = this.alertCadastroCtrl.create({
       title: 'Cadastro realizado com sucesso!',
       subTitle: 'Parabéns por  cadastrar um membro importante!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showAlertErro() {
+    let alert = this.alertCadastroCtrl.create({
+      title: 'Cadastro não realizado.',
+      subTitle: 'Algun campo no cadastro está errado e/ou cpf já cadastrado.',
       buttons: ['OK']
     });
     alert.present();

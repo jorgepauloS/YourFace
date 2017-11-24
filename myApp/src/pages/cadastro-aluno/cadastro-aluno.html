@@ -18,7 +18,7 @@
 
     <ion-item>
       <ion-label>Nome Completo:</ion-label>
-      <ion-input type="text" [(ngModel)]="dados.nomeUsuario" id="inputNomeUsuario" autofocus required></ion-input>
+      <ion-input type="text" [(ngModel)]="dados.name" id="inputName" autofocus required></ion-input>
     </ion-item>
 
     <ion-item>
@@ -43,8 +43,8 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Data Nascimento::</ion-label>
-      <ion-input type="date" [(ngModel)]="dados.date" class="inputdate" required></ion-input>
+      <ion-label>Data Nascimento:</ion-label>
+      <ion-input type="date" [(ngModel)]="dados.dataNascimento" class="inputDataNascimento" required></ion-input>
     </ion-item>
 
   </ion-list>
@@ -71,13 +71,9 @@
   </ion-card>
 
   <div padding>
-    <button ion-button block (click)="goToHomePage()">Cadastrar</button>
+    <button ion-button block (click)="cadastrarEstudante()">Cadastrar</button>
     <br>
     <button ion-button block (click)="goToHomePage2()">Cancelar</button>
-  </div>
-
-
-  <button ion-button block (click)="mostraJson()">mostraJson</button>
-  
+  </div>  
 
 </ion-content>

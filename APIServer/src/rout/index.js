@@ -23,9 +23,6 @@ app.route('/').get((req, res)=>{
 });
 
 
-
-
-
 /* GET */
 app.route('/alunos').get((req, res)=>{
 	dao.findAll('tb_aluno', (result) => {

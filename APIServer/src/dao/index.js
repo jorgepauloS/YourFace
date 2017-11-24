@@ -54,19 +54,22 @@ conexao.create = (tabela, data, callback) => {
 		if (err)
 			return callback({ msg: "erro", error: true });
 		else {
-			return callback({ msg: "Cadastro Realizado", error: false });
+			return callback({ msg: "Cadastro realizado!", error: false });
 		}
 	});
 }
+
+
 conexao.createAluno = (tabela, data, callback) => {
-	const { cpf, name, email } = data;
-	const sql = "INSERT INTO " + tabela + " (cpf, name, email) VALUES (?,?,?)";
-	conexao.query(sql, [cpf, name, email], (err, result) => {
+	const { cpf, name, email, curso, dataNascimento } = data;
+	const sql = "INSERT INTO " + tabela + " (cpf, name, email, curso, dataNascimento) VALUES (?,?,?,?,?)";
+	conexao.query(sql, [cpf, name, email, curso, dataNascimento], (err, result) => {
 		if (err)
 			return callback({ msg: "erro", error: true });
 		else {
-			return callback({ msg: "Cadastro Realizado", error: false });
+			return callback({ msg: "Cadastro de ESTUDANTE realizado!", error: false });
 		}
 	});
 }
+
 export default conexao;

@@ -12,19 +12,18 @@ import 'rxjs/add/operator/map';
 export class CadastroAlunoPage {
 
   public dados = {
-    nomeUsuario : null,
+    name : null,
     cpf : null,
     email : null,
     emailConf: null,
     curso: null,
-    idade : null,
+    dataNascimento: null,
   };
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCadastroCtrl: AlertController,
-    public http:Http
-   ) {
+    public http: Http) {
   }
 
   TestaCPF(strCPF) {
@@ -48,15 +47,16 @@ export class CadastroAlunoPage {
     return true;
   }
 
-  fazerCadastroAluno(): boolean {
-    var nomeUsuario = this.dados.nomeUsuario;
+  cadastrarEstudante(): boolean {
+    var name = this.dados.name;
     var cpf = this.dados.cpf;
     var email = this.dados.email;
     var emailConf = this.dados.emailConf;
     var curso = this.dados.curso;
-    var idade = this.dados.idade;
+    var dataNascimento = this.dados.dataNascimento
+;
 
-    if (nomeUsuario == undefined) {
+    if (name == undefined) {
       alert('O login é um campo obrigatório.');
       return;
     }
@@ -83,36 +83,34 @@ export class CadastroAlunoPage {
     if (curso == undefined) {
       alert('O campo curso/série é um campo obrigatório.');
       return;
-    }
-    if (idade == undefined) {
+    } 
+    if (dataNascimento == undefined) {
       alert('O campo idade é um campo obrigatório.');
       return;
     }
 
     // Cria o objeto usuario e o cadastro no BD
-    var usuarioAluno: object = {
-      nomeUsuario: nomeUsuario,
+    var usuarioEstudante: object = {
+      name: name,
       cpf: cpf,
       email: email,
-      emailConf: emailConf,
       curso: curso,
-    };
-    //Falta integrarco o banco.
-    /*if (this.usuarioDAO.getUser()){
-      this.usuarioDAO.cadastrar(usuarioAluno);
-      return true;
-    }*/
+      dataNascimento: dataNascimento
 
-    return true;
-  }
-  goToHomePage(dados) {
-    if (this.fazerCadastroAluno()) {
-      console.log(dados)
-      this.showAlert()
-      this.navCtrl.push(HomePage);
-    } else {
-      console.log("Algun campo no cadastro está errado!")
-    }
+    };
+    this.http.post('http://localhost:3000/alunos/create', usuarioEstudante).map(res => res.json())
+      .subscribe(res => {
+        console.log(res);
+        if (res.error) {
+          console.log(usuarioEstudante)
+          this.showAlertErro()
+        } else {
+          this.showAlert()
+          this.navCtrl.setRoot(HomePage);;
+        }
+      }, (error) => {
+        console.log("erro " + error);
+      });
   }
 
   ionViewDidLoad() {
@@ -122,29 +120,23 @@ export class CadastroAlunoPage {
   }
 
   goToHomePage2() {
-    this.navCtrl.push(HomePage);
+    this.navCtrl.setRoot(HomePage);
   }
+
   showAlert() {
     let alert = this.alertCadastroCtrl.create({
       title: 'Cadastro realizado com sucesso!',
-      subTitle: 'Parabéns por  cadastrar um membro importante!',
+      subTitle: 'Parabéns por cadastra um ESTUDANTE muito importante para sua instituiçao!',
       buttons: ['OK']
     });
     alert.present();
   }
-
-  titulos:string;
-
-
-  mostraJson(){
-    this.http.get('https://jsonplaceholder.typicode.com/posts/1').map(res => res.json())
-    .subscribe(res => {
-      this.titulos = JSON.stringify([res]);
-      console.log(res);
-    }, (error)=>{
-      console.log("erro "+error);
-  });
+  showAlertErro() {
+    let alert = this.alertCadastroCtrl.create({
+      title: 'Cadastro não realizado !',
+      subTitle: 'Algun campo no cadastro está errado e/ou cpf já cadastrado.',
+      buttons: ['OK']
+    });
+    alert.present();
   }
-
-
 }

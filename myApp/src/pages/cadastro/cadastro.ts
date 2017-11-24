@@ -105,27 +105,19 @@ export class CadastroPage {
       email: email,
     };
 
-    var resposta:boolean=false;
-
     this.http.post('http://localhost:3000/coordenador/create', usuarioDiretor).map(res => res.json())
     .subscribe(res => {
       console.log(res);
       if (res.error){
-        console.log("Algun campo no cadastro está errado e/ou cpf já cadastrado!")
+      this.showAlertErro()
       }else{
         this.showAlert()
         this.navCtrl.setRoot(HomePage);;
       }
     }, (error) => {
       console.log("erro " + error);
-      console.log("Algun campo no cadastro está errado e/ou cpf já cadastrado!")
     });
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CadastroPage');
-  }
-
 
   goToHomePage2() {
     this.navCtrl.setRoot(HomePage);
@@ -134,19 +126,17 @@ export class CadastroPage {
   showAlert() {
     let alert = this.alertCadastroCtrl.create({
       title: 'Cadastro realizado com sucesso!',
-      subTitle: 'Parabéns por se cadastrar em nossa base de dados senhor diretor(a)!',
+      subTitle: 'Parabéns por se cadastrar em nossa base de dados senhor diretor(a).',
       buttons: ['OK']
     });
     alert.present();
   }
-
-  cadastraUser(data){
-    this.http.post('http://localhost:3000/coordenador/create', data ).map(res => res.json())
-      .subscribe(res => {
-        console.log(res);
-      }, (error)=>{
-        console.log("erro "+error);
+  showAlertErro() {
+    let alert = this.alertCadastroCtrl.create({
+      title: 'Cadastro não realizado.',
+      subTitle: 'Algun campo no cadastro está errado e/ou cpf já cadastrado.',
+      buttons: ['OK']
     });
-    
+    alert.present();
   }
 }

@@ -34,22 +34,34 @@ export class RemoverUsuariosPage {
   }
 
 
-
-
-
-  initializeItems() {
+  initializeItems() { 
     
     this.http.get('http://localhost:3000/coordenador').map(res => res.json())
       .subscribe(res => {
-        
         this.items = res;
-
-
-
       }, (error) => {
-        console.log("erro " + error);
-        console.log("Algun campo no cadastro está errado e/ou cpf já cadastrado!")
+        console.error("erro " + error);
       });
+
+      var prof:any;
+
+    this.http.get('http://localhost:3000/professor').map(response => response.json())
+      .subscribe(response => {
+        for (const key in response) {
+          if (response.hasOwnProperty(key)) {
+            this.items.push(response[key]);
+          }
+        }
+        
+      }, (error) => {
+        console.error("erro " + error);
+      });
+
+    
+
+
+    
+  
   }
 
   getItems(ev: any) {
@@ -122,6 +134,4 @@ export class RemoverUsuariosPage {
     });
     prompt.present();
   }
-
-
 }

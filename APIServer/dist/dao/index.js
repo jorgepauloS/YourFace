@@ -62,20 +62,24 @@ conexao.create = function (tabela, data, callback) {
 	var sql = "INSERT INTO " + tabela + " (cpf, name, email, password) VALUES (?,?,?,?)";
 	conexao.query(sql, [cpf, name, email, password], function (err, result) {
 		if (err) return callback({ msg: "erro", error: true });else {
-			return callback({ msg: "Cadastro Realizado", error: false });
+			return callback({ msg: "Cadastro realizado!", error: false });
 		}
 	});
 };
+
 conexao.createAluno = function (tabela, data, callback) {
 	var cpf = data.cpf,
 	    name = data.name,
-	    email = data.email;
+	    email = data.email,
+	    curso = data.curso,
+	    dataNascimento = data.dataNascimento;
 
-	var sql = "INSERT INTO " + tabela + " (cpf, name, email) VALUES (?,?,?)";
-	conexao.query(sql, [cpf, name, email], function (err, result) {
+	var sql = "INSERT INTO " + tabela + " (cpf, name, email, curso, dataNascimento) VALUES (?,?,?,?,?)";
+	conexao.query(sql, [cpf, name, email, curso, dataNascimento], function (err, result) {
 		if (err) return callback({ msg: "erro", error: true });else {
-			return callback({ msg: "Cadastro Realizado", error: false });
+			return callback({ msg: "Cadastro de ESTUDANTE realizado!", error: false });
 		}
 	});
 };
+
 exports.default = conexao;

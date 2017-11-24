@@ -3,19 +3,25 @@
       <ion-title>Editar/Deletar</ion-title>
     </ion-navbar>
   <ion-toolbar color="primary">
-    <ion-searchbar (input)="getItems($event)"></ion-searchbar>
+    <ion-searchbar (input)="getItems($event)" [(ngModel)]="filterargs" No></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list *ngFor="let user of items">
+    
     <ion-item-sliding>
       <ion-item>
+
         <ion-avatar item-start>
           <img src="assets/imgs/intro01.png">
         </ion-avatar>
+
         <p>Cpf: {{user.cpf}}</p>
+        <p>Cpf: {{user.name}}</p>
+        <p>Cpf: {{user.email}}</p>
       </ion-item>
+
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="deletarUser(user)">
           Deletar
