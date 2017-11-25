@@ -17,11 +17,11 @@ conexao.findAll = (tabela, callback) =>{
 		}
 	});
 }
-conexao.findOne = (tabela, campo, codigo, callback) =>{
+conexao.findOne = (tabela, codigo, callback) =>{
 	let data = {};
 	codigo = parseInt(codigo);
 	if (codigo) {
-		conexao.query('SELECT * FROM '+tabela+' WHERE '+campo+' = ?', [codigo], function (err, result, fields) {
+		conexao.query('SELECT * FROM '+tabela+' WHERE `cpf`=?', [codigo], function (err, result, fields) {
 			if (err)
 				return callback(err);
 			else{
@@ -47,6 +47,97 @@ conexao.login = (tabela, data ,callback) =>{
 	});
 }
 
+
+conexao.update = (tabela, data, callback) => {
+
+  const { cpf, name, email, curso, dataNascimento, password} = data;
+
+  conexao.findOne(tabela, cpf, (res)=>{
+    if(res.length>0){
+
+      let sql = "UPDATE "+tabela+" SET `name`=?, email=? ";
+      let parametros = [name, email]
+
+      if(password){
+        sql +=",`password`=?,";
+        parametros.push(password);
+      }if(curso && dataNascimento){
+        sql +="`curso`=?, `dataNascimento`=?,";
+        parametros.push(curso);
+        parametros.push(dataNascimento);
+      }
+      sql = sql.substring(0,(sql.length - 1));
+      sql += " WHERE cpf=?";
+      parametros.push(cpf);
+      
+      conexao.query(sql, parametros, (err, result) => {
+        if (err){
+          console.log(err);
+          return callback({ msg: "Erro", error: true });
+        }else {
+          return callback({ msg: "Cadastro Atualizado!", error: false });
+        }
+      });
+      
+    }
+
+  });
+}
+
+conexao.create = (tabela, data, callback) => {
+  const { cpf, name, email, curso, dataNascimento, password} = data;
+
+  let sql = "INSERT INTO `"+tabela+"` (`cpf`, `name`, `email` "
+  let parametros = [cpf, name, email];
+
+  if(password){
+    sql +=",`password`,";
+    parametros.push(password);
+  }if(curso && dataNascimento){
+    sql +="`curso`, `dataNascimento`,";
+    parametros.push(curso);
+    parametros.push(dataNascimento);
+  }
+  sql = sql.substring(0,(sql.length - 1));
+  sql +=") VALUES (";
+  for (let i = parametros.length; i > 0; i--) {
+    sql +="?,";
+  }
+  sql = sql.substring(0,(sql.length - 1));
+  sql +=")";
+
+  conexao.query(sql, parametros, (err, result) => {
+    if (err)
+      return callback({ msg: "erro", error: true });
+    else {
+      return callback({ msg: "Cadastro de ESTUDANTE realizado!", error: false });
+    }
+  });
+}
+
+
+
+
+conexao.delete = (tabela, codigo, callback) =>{
+  if (codigo) {
+    conexao.findOne(tabela, codigo, (res)=>{
+      if(res.length>0){
+        conexao.query("UPDATE "+tabela+" SET `ativo`='false' WHERE  `cpf`=?", [codigo], function (err, result, fields) {
+          if (err){
+          console.log(err);
+          return callback({ msg: "Erro", error: true });
+        }else{
+            return callback({ msg: "1 Usuario Desativado: ", error: false });
+          }
+        });
+      }else{
+        return callback({ msg: "Usuario nao Encontrado!", error: true });
+      }
+    });
+  }
+}
+
+/*
 conexao.create = (tabela, data, callback) => {
 	const {cpf, name, email, password} = data;
 	const sql = "INSERT INTO " + tabela +" (cpf, name, email, password) VALUES (?,?,?,?)";
@@ -71,5 +162,5 @@ conexao.createAluno = (tabela, data, callback) => {
 		}
 	});
 }
-
+*/
 export default conexao;

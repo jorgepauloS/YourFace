@@ -16,11 +16,12 @@ app.use(function(req, res, next) {
 	next();
 });
 
-
 app.route('/').get((req, res)=>{
 	var auth = req.get("Authorization");
 	res.sendFile(__dirname+'/index.html');
 });
+
+
 
 
 /* GET */
@@ -32,17 +33,24 @@ app.route('/alunos').get((req, res)=>{
 /* GET */
 app.route('/alunos/:id').get((req, res)=>{
 	let codigo = req.params.id;
-	dao.findOne('tb_aluno', 'cpf', codigo, (result)=>{
+	dao.findOne('tb_aluno', codigo, (result)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
 });
+
 /* POST  */
 app.route('/alunos/create').post((req, res)=>{
 	const data = req.body;
-	dao.createAluno('tb_aluno', data,(result)=>{
+	dao.create('tb_aluno', data,(result)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
-
+});
+/* DELETE */
+app.route('/alunos/:id/delete').delete((req, res)=>{
+	let codigo = req.params.id;
+	dao.delete('tb_aluno', codigo, (result)=>{
+		res.status(200).send(JSON.stringify(result));
+	});
 });
 
 
@@ -56,7 +64,7 @@ app.route('/coordenador').get((req, res)=>{
 /* GET */
 app.route('/coordenador/:id').get((req, res)=>{
 	let codigo = req.params.id;
-	dao.findOne('tb_coord', 'cpf',codigo, (result)=>{
+	dao.findOne('tb_coord', codigo, (result)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
 });
@@ -67,7 +75,13 @@ app.route('/coordenador/create').post((req, res)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
 });
-
+/* DELETE */
+app.route('/coordenador/:id/delete').delete((req, res)=>{
+	let codigo = req.params.id;
+	dao.delete('tb_coord', codigo, (result)=>{
+		res.status(200).send(JSON.stringify(result));
+	});
+});
 
 
 /* GET */
@@ -77,11 +91,10 @@ app.route('/professor').get((req, res)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
 });
-
 /* GET */
 app.route('/professor/:id').get((req, res)=>{
 	let codigo = req.params.id;
-	dao.findOne('tb_prof', 'cpf',codigo, (result)=>{
+	dao.findOne('tb_prof', codigo, (result)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
 });
@@ -92,13 +105,20 @@ app.route('/professor/create').post((req, res)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
 });
+/* DELETE */
+app.route('/professor/:id/delete').delete((req, res)=>{
+	let codigo = req.params.id;
+	dao.delete('tb_prof', codigo, (result)=>{
+		res.status(200).send(JSON.stringify(result));
+	});
+});
+
+
 
 
 /* POST Login */
 app.route('/login').post((req, res)=>{
 	const data = req.body;
-
-	console.log(data);
 	dao.login('tb_coord', data,(result)=>{
 		res.send(JSON.stringify(result));
 	});
