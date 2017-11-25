@@ -52,6 +52,17 @@ app.route('/alunos/:id/delete').delete((req, res)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
 });
+/* PUT  */
+app.route('/alunos/update').put((req, res)=>{
+	const data = req.body;
+	dao.update('tb_aluno', data,(result)=>{
+		res.status(200).send(JSON.stringify(result));
+	});
+});
+
+
+
+
 
 
 /* GET */
@@ -82,6 +93,16 @@ app.route('/coordenador/:id/delete').delete((req, res)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
 });
+/* PUT  */
+app.route('/coordenador/update').put((req, res)=>{
+	const data = req.body;
+	dao.update('tb_coord', data,(result)=>{
+		res.status(200).send(JSON.stringify(result));
+	});
+});
+
+
+
 
 
 /* GET */
@@ -112,7 +133,13 @@ app.route('/professor/:id/delete').delete((req, res)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
 });
-
+/* PUT  */
+app.route('/professor/update').put((req, res)=>{
+	const data = req.body;
+	dao.update('tb_prof', data,(result)=>{
+		res.status(200).send(JSON.stringify(result));
+	});
+});
 
 
 

@@ -33,6 +33,8 @@ USE `yourface`;
 DROP TABLE IF EXISTS `tb_aluno`;
 CREATE TABLE IF NOT EXISTS `tb_aluno` (
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `curso` varchar(255) COLLATE utf8_bin NOT NULL,
+  `dataNascimento` varchar(255) COLLATE utf8_bin NOT NULL,
   `ativo` enum('true','false') COLLATE utf8_bin DEFAULT 'true',
   `cpf` varchar(12) COLLATE utf8_bin NOT NULL,
   `email` varchar(200) COLLATE utf8_bin DEFAULT NULL,
@@ -71,7 +73,7 @@ INSERT INTO `tb_coord` (`name`, `cpf`, `password`, `ativo`, `email`) VALUES
 DROP TABLE IF EXISTS `tb_prof`;
 CREATE TABLE IF NOT EXISTS `tb_prof` (
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
-  `Password` varchar(41) COLLATE utf8_bin NOT NULL,
+  `password` varchar(41) COLLATE utf8_bin NOT NULL,
   `ativo` enum('true','false') COLLATE utf8_bin DEFAULT 'true',
   `cpf` varchar(12) COLLATE utf8_bin NOT NULL,
   `email` varchar(200) COLLATE utf8_bin DEFAULT NULL,
