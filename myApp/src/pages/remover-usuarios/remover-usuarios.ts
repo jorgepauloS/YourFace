@@ -13,10 +13,8 @@ import { List } from 'ionic-angular/components/list/list';
   templateUrl: 'remover-usuarios.html',
 })
 export class RemoverUsuariosPage {
-  
   items: any;
   lista: any;
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -26,29 +24,38 @@ export class RemoverUsuariosPage {
   }
 
   inicializaLista() {
-    this.http.get('http://localhost:3000/coordenador').map(res => res.json())
+    this.http.get('http://localhost:3000/coordenador/ativo').map(res => res.json())
       .subscribe(res => {
-        this.items = res;
+        console.log(res)
+        this.lista = res;
+        if(res[0]!= null){
+          this.initializeItems();
+        }
       }, (error) => {
         console.error("erro " + error);
       });
+      
+    this.http.get('http://localhost:3000/professor/ativo').map(response => response.json())
+      .subscribe(response => {
+        for (const key in response) {
+          if (response.hasOwnProperty(key)) {
+            this.lista.push(response[key]);
+          }
+        }
+        this.initializeItems();
+      }, (error) => {
+        console.error("erro " + error);
+      });
+      
   }
 
-  deletarUser(user){
-    const {cpf} = user;
-    this.http.delete('http://localhost:3000/coordenador/'+cpf+'/delete').map(res => res.json())
-    .subscribe(res => {
-      console.log(res)
-    }, (error) => {
-      console.error("erro " + error);
-    });
-
-    
-
-
+  initializeItems() {
+    this.items = this.lista;
   }
 
   getItems(ev: any) {
+    // Reset items back to all of the items
+    this.initializeItems();
 
     // set val to the value of the searchbar
     let val = ev.target.value;
@@ -61,13 +68,57 @@ export class RemoverUsuariosPage {
     }
   }
 
+  deletarUser(user) {
+    let prompt = this.alertCtrl.create({
+      title: 'Deletar usuário!',
+      inputs: [
+        {
+          name: 'cpf',
+          placeholder: 'cpf',
+          value: user.cpf
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+
+        },
+        {
+          text: 'Deletar',
+          handler: data => {
+            console.log('Deletar clicked');
+
+            this.http.delete('http://localhost:3000/coordenador/' + data.cpf + '/delete').map(res => res.json())
+              .subscribe(res => {
+                console.log(res)
+                this.inicializaLista();
+              }, (error) => {
+                console.error("erro " + error);
+              });
+            this.http.delete('http://localhost:3000/professor/' + data.cpf + '/delete').map(res => res.json())
+              .subscribe(res => {
+                console.log(res)
+                this.inicializaLista();
+              }, (error) => {
+                console.error("erro " + error);
+              });
+
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
   editarUser(user) {
     let prompt = this.alertCtrl.create({
       title: 'Edita Perfil',
       inputs: [
         {
           name: 'name',
-          placeholder: 'name',
+          placeholder: 'nome',
           value: user.name
         },
         {
@@ -97,31 +148,27 @@ export class RemoverUsuariosPage {
         {
           text: 'Salvar',
           handler: data => {
+            console.log('Saved clicked');
             let params: any = {
               name: data.name,
               cpf: data.cpf,
               email: data.email,
               password: data.password
             }
-
-            console.log('Saved clicked');
-            
             this.http.put('http://localhost:3000/coordenador/update', data).map(res => res.json())
-            .subscribe(res => {
-              this.inicializaLista();
-            }, (error) => {
-              console.log("erro " + error);
-            });
-
-            /*this.service.updateData(params)
-              .subscribe(
-              data => {
-                console.log(data.mensage);
-                this.getDados();
-              },
-              err => console.log(err)
-              );*/
-
+              .subscribe(res => {
+                console.log(data);
+                this.inicializaLista();
+              }, (error) => {
+                console.log("erro " + error);
+              });
+            this.http.put('http://localhost:3000/professor/update', data).map(res => res.json())
+              .subscribe(res => {
+                console.log(data);
+                this.inicializaLista();
+              }, (error) => {
+                console.log("erro " + error);
+              });
 
           }
         }

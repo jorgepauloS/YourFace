@@ -30,6 +30,11 @@ app.route('/alunos').get((req, res)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
 });
+app.route('/alunos/ativo').get((req, res) => {
+	dao.findAtivo('tb_aluno', (result) => {
+		res.status(200).send(JSON.stringify(result));
+	});
+});
 /* GET */
 app.route('/alunos/:id').get((req, res)=>{
 	let codigo = req.params.id;
@@ -72,6 +77,11 @@ app.route('/coordenador').get((req, res)=>{
 		res.status(200).send(JSON.stringify(result));
 	});
 });
+app.route('/coordenador/ativo').get((req, res) => {
+	dao.findAtivo('tb_coord', (result) => {
+		res.status(200).send(JSON.stringify(result));
+	});
+});
 /* GET */
 app.route('/coordenador/:id').get((req, res)=>{
 	let codigo = req.params.id;
@@ -110,6 +120,13 @@ app.route('/coordenador/update').put((req, res)=>{
 // professor
 app.route('/professor').get((req, res)=>{
 	dao.findAll('tb_prof', (result) => {
+		res.status(200).send(JSON.stringify(result));
+	});
+});
+/* GET */
+// professor
+app.route('/professor/ativo').get((req, res) => {
+	dao.findAtivo('tb_prof', (result) => {
 		res.status(200).send(JSON.stringify(result));
 	});
 });

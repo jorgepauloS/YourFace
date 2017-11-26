@@ -31,6 +31,18 @@ conexao.findOne = (tabela, codigo, callback) =>{
 		});
 	}
 }
+conexao.findAtivo = (tabela, callback) =>{
+  let data;
+  conexao.query("SELECT * FROM " + tabela + ' WHERE `ativo`=?', [true], function (err, result, fields) {
+    let data;
+    if (err)
+      return callback(err);
+    else {
+      return callback(result);
+    }
+  });
+}
+
 conexao.login = (tabela, data ,callback) =>{
 	const {cpf, password} = data;
 	const sql = "SELECT * FROM "+tabela+" WHERE cpf=? and password=?";
