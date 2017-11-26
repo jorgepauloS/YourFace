@@ -19,6 +19,7 @@ import { ServiceProvider } from '../providers/service/service';
 import { HttpModule } from '@angular/http';
 import { RemoverUsuariosPage } from '../pages/remover-usuarios/remover-usuarios';
 import { ListarAlunosPage } from '../pages/listar-alunos/listar-alunos';
+import { Camera } from "@ionic-native/camera";
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { ListarAlunosPage } from '../pages/listar-alunos/listar-alunos';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServiceProvider,
+    Camera
     
   ]
 })

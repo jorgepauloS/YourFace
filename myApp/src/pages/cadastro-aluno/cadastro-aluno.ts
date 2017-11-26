@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { HomePage } from '../home/home';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+//import { Camera, CameraOptions } from "@ionic-native/camera";
+
 
 @IonicPage()
 @Component({
@@ -10,11 +12,11 @@ import 'rxjs/add/operator/map';
   templateUrl: 'cadastro-aluno.html',
 })
 export class CadastroAlunoPage {
-
+  //foto: any;
   public dados = {
-    name : null,
-    cpf : null,
-    email : null,
+    name: null,
+    cpf: null,
+    email: null,
     emailConf: null,
     curso: null,
     dataNascimento: null,
@@ -23,8 +25,27 @@ export class CadastroAlunoPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCadastroCtrl: AlertController,
+    //public camera: Camera,
     public http: Http) {
   }
+  /*getPhoto(type) {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: type == "picture" ? this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+      correctOrientation: true
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+
+      this.foto = 'data:image/jpeg;base64,' + imageData;
+
+    }, (err) => {
+      // Handle error
+    });
+  }*/
 
   TestaCPF(strCPF) {
     let Soma;
@@ -47,14 +68,13 @@ export class CadastroAlunoPage {
     return true;
   }
 
-  cadastrarEstudante(): boolean {
+  cadastrarEstudante() {
     var name = this.dados.name;
     var cpf = this.dados.cpf;
     var email = this.dados.email;
     var emailConf = this.dados.emailConf;
     var curso = this.dados.curso;
-    var dataNascimento = this.dados.dataNascimento
-;
+    var dataNascimento = this.dados.dataNascimento;
 
     if (name == undefined) {
       alert('O login é um campo obrigatório.');
@@ -83,7 +103,7 @@ export class CadastroAlunoPage {
     if (curso == undefined) {
       alert('O campo curso/série é um campo obrigatório.');
       return;
-    } 
+    }
     if (dataNascimento == undefined) {
       alert('O campo idade é um campo obrigatório.');
       return;
@@ -113,12 +133,6 @@ export class CadastroAlunoPage {
       });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CadastroAlunoPage');
-  }
-  getPhoto(){
-  }
-
   goToHomePage2() {
     this.navCtrl.setRoot(HomePage);
   }
@@ -139,4 +153,5 @@ export class CadastroAlunoPage {
     });
     alert.present();
   }
+
 }

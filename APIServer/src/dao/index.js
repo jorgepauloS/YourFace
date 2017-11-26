@@ -123,19 +123,15 @@ conexao.create = (tabela, data, callback) => {
     if (err)
       return callback({ msg: "erro", error: true });
     else {
-      return callback({ msg: "Cadastro de ESTUDANTE realizado!", error: false });
+      return callback({ msg: "Cadastro de realizado!", error: false });
     }
   });
 }
 
 
-
-
 conexao.delete = (tabela, codigo, callback) =>{
   if (codigo) {
     conexao.findOne(tabela, codigo, (res)=>{
-    
-
       if(res){
         conexao.query("UPDATE "+tabela+" SET `ativo`='false' WHERE  `cpf`=?", [codigo], function (err, result, fields) {
           if (err){
@@ -152,30 +148,4 @@ conexao.delete = (tabela, codigo, callback) =>{
   }
 }
 
-/*
-conexao.create = (tabela, data, callback) => {
-	const {cpf, name, email, password} = data;
-	const sql = "INSERT INTO " + tabela +" (cpf, name, email, password) VALUES (?,?,?,?)";
-	conexao.query(sql, [cpf, name, email, password], (err, result) => {
-		if (err)
-			return callback({ msg: "erro", error: true });
-		else {
-			return callback({ msg: "Cadastro realizado!", error: false });
-		}
-	});
-}
-
-
-conexao.createAluno = (tabela, data, callback) => {
-	const { cpf, name, email, curso, dataNascimento } = data;
-	const sql = "INSERT INTO " + tabela + " (cpf, name, email, curso, dataNascimento) VALUES (?,?,?,?,?)";
-	conexao.query(sql, [cpf, name, email, curso, dataNascimento], (err, result) => {
-		if (err)
-			return callback({ msg: "erro", error: true });
-		else {
-			return callback({ msg: "Cadastro de ESTUDANTE realizado!", error: false });
-		}
-	});
-}
-*/
 export default conexao;
