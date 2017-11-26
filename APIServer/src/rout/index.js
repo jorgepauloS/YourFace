@@ -89,6 +89,7 @@ app.route('/coordenador/create').post((req, res)=>{
 /* DELETE */
 app.route('/coordenador/:id/delete').delete((req, res)=>{
 	let codigo = req.params.id;
+	console.log(codigo);
 	dao.delete('tb_coord', codigo, (result)=>{
 		res.status(200).send(JSON.stringify(result));
 	});

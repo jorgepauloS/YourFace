@@ -6,6 +6,7 @@ const conexao = mysql.createConnection({
 	database: "yourface",
 	password : ''
 });
+
 conexao.findAll = (tabela, callback) =>{
 	let data;
 	conexao.query("SELECT * FROM "+tabela, function (err, result, fields) {
@@ -19,7 +20,7 @@ conexao.findAll = (tabela, callback) =>{
 }
 conexao.findOne = (tabela, codigo, callback) =>{
 	let data = {};
-	codigo = parseInt(codigo);
+	codigo = codigo;
 	if (codigo) {
 		conexao.query('SELECT * FROM '+tabela+' WHERE `cpf`=?', [codigo], function (err, result, fields) {
 			if (err)
@@ -121,7 +122,9 @@ conexao.create = (tabela, data, callback) => {
 conexao.delete = (tabela, codigo, callback) =>{
   if (codigo) {
     conexao.findOne(tabela, codigo, (res)=>{
-      if(res.length>0){
+    
+
+      if(res){
         conexao.query("UPDATE "+tabela+" SET `ativo`='false' WHERE  `cpf`=?", [codigo], function (err, result, fields) {
           if (err){
           console.log(err);

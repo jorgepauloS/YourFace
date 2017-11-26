@@ -1,35 +1,31 @@
 <ion-header>
-  <ion-title></ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Administrador</ion-title>
+  </ion-navbar>
+</ion-header>
 
+
+<ion-content padding>
   <div>
     <h2>Administrador</h2>
     <h3>Seja bem vindo ao YourFace</h3>
     <br>
   </div>
+  
+  <button ion-button block (click)="abrirCadastroProfessor()">Cadastro Professor</button>
+  <br>
 
-  <button ion-button block (click)="abrirCadastroProfessor()">
-    Cadastro Professor
-  </button>
+  <button ion-button block (click)="abrirCadastroAluno()">Cadastro Aluno</button>
   <br>
-  <button ion-button block (click)="abrirCadastroAluno()">
-    Cadastro Aluno
-  </button>
+  <button ion-button block (click)="goToCadastroPage()">Cadastro Diretor</button>
   <br>
-  <button ion-button block (click)="goToCadastroPage()">
-    Cadastro Diretor
-  </button>
+  <button ion-button block (click)="abrirRelatorio()">Relatório</button>
+
   <br>
-  <button ion-button block (click)="abrirRelatorio()">
-    Relatório
-  </button>
   <br>
-    <br>
-    <button ion-button block (click)="removerUsuarios()">
-      Remover usuários
-    </button>
-    <br>
-  <button ion-button block (click)="sair()">
-    Sair
-  </button>
+  <button ion-button block (click)="removerUsuarios()">Remover Coordenador</button>
   <br>
-</ion-header>
+
+  <button ion-button block (click)="sair()">Sair</button>
+  <br>
+</ion-content>

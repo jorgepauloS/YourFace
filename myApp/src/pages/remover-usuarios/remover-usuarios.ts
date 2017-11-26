@@ -13,8 +13,10 @@ import { List } from 'ionic-angular/components/list/list';
   templateUrl: 'remover-usuarios.html',
 })
 export class RemoverUsuariosPage {
+  
   items: any;
   lista: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -27,32 +29,27 @@ export class RemoverUsuariosPage {
     this.http.get('http://localhost:3000/coordenador').map(res => res.json())
       .subscribe(res => {
         console.log(res)
-        this.lista = res;
+        this.items = res;
       }, (error) => {
         console.error("erro " + error);
       });
-
-    this.http.get('http://localhost:3000/professor').map(response => response.json())
-      .subscribe(response => {
-        for (const key in response) {
-          if (response.hasOwnProperty(key)) {
-            this.lista.push(response[key]);
-          }
-        }
-        this.initializeItems();
-      }, (error) => {
-        console.error("erro " + error);
-      });
-
   }
 
-  initializeItems() {
-    this.items = this.lista;
+  deletarUser(user){
+    const {cpf} = user;
+    this.http.delete('http://localhost:3000/coordenador/'+cpf+'/delete').map(res => res.json())
+    .subscribe(res => {
+      console.log(res)
+    }, (error) => {
+      console.error("erro " + error);
+    });
+
+    
+
+
   }
 
   getItems(ev: any) {
-    // Reset items back to all of the items
-    this.initializeItems();
 
     // set val to the value of the searchbar
     let val = ev.target.value;

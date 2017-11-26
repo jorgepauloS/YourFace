@@ -34,7 +34,7 @@ export class LoginPage {
 
   //teste do login, depois não servirá mais.
   goToHome() {
-    console.log(this.userCredenciais)
+    //console.log(this.userCredenciais)
     this.http.post('http://localhost:3000/login', this.userCredenciais).map(res => res.json())
       .subscribe(res => {
         console.log(res);
