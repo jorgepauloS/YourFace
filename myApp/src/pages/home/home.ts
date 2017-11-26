@@ -34,16 +34,17 @@ export class HomePage {
   
   abrirRelatorio(){
     this.navCtrl.push(RelatorioPage)
-
   }
+
   sair(){
     this.navCtrl.setRoot(LoginPage)
   }
+
   removerUsuarios(){
     this.navCtrl.push(RemoverUsuariosPage)
   }
+
   listarAlunos(){
     this.navCtrl.push(ListarAlunosPage)
-
   }
 }
