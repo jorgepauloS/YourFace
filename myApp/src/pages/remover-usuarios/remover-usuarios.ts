@@ -4,7 +4,7 @@ import { LoginPage } from '../login/login';
 import { AlertController } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-
+import { List } from 'ionic-angular/components/list/list';
 
 
 @IonicPage()
@@ -13,55 +13,41 @@ import 'rxjs/add/operator/map';
   templateUrl: 'remover-usuarios.html',
 })
 export class RemoverUsuariosPage {
-
-  items : any;
-  lista:any;
-  /*lista=[
-    { name: "string", cpf: "12345", email: "string", password: "string" },
-    { name: "string", cpf: "23452",email: "string", password: "string" },
-    { name: "string", cpf: "452223",email: "string", password: "string" },
-    { name: "string", cpf: "0111223", email: "string", password: "string" }
-  ];*/
-  
-  //'/coordenador/';
-
+  items: any;
+  lista: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public http: Http) {
-    this.initializeItems();
+    this.inicializaLista()
   }
 
-
-  initializeItems() { 
-    
+  inicializaLista() {
     this.http.get('http://localhost:3000/coordenador').map(res => res.json())
       .subscribe(res => {
-        this.items = res;
+        console.log(res)
+        this.lista = res;
       }, (error) => {
         console.error("erro " + error);
       });
-
-      var prof:any;
 
     this.http.get('http://localhost:3000/professor').map(response => response.json())
       .subscribe(response => {
         for (const key in response) {
           if (response.hasOwnProperty(key)) {
-            this.items.push(response[key]);
+            this.lista.push(response[key]);
           }
         }
-        
+        this.initializeItems();
       }, (error) => {
         console.error("erro " + error);
       });
 
-    
+  }
 
-
-    
-  
+  initializeItems() {
+    this.items = this.lista;
   }
 
   getItems(ev: any) {
@@ -79,40 +65,43 @@ export class RemoverUsuariosPage {
     }
   }
 
-  editarUser(req) {
+  editarUser(user) {
     let prompt = this.alertCtrl.create({
       title: 'Edita Perfil',
       inputs: [
         {
           name: 'nome',
           placeholder: 'nome',
-          value: req.name
+          value: user.name
         },
         {
           name: 'cpf',
           placeholder: 'cpf',
-          value: req.cpf
+          value: user.cpf
         },
         {
           name: 'email',
           placeholder: 'email',
-          value: req.email
+          value: user.email
         },
         {
           name: 'password',
           placeholder: 'password',
-          value: req.password
+          value: user.password
         }
       ],
       buttons: [
         {
           text: 'Cancelar',
-          handler: data => { }
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+
         },
         {
           text: 'Salvar',
           handler: data => {
-
+            console.log('Saved clicked');
             let params: any = {
               name: data.name,
               cpf: data.cpf,
