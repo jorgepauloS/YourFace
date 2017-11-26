@@ -28,7 +28,6 @@ export class RemoverUsuariosPage {
   inicializaLista() {
     this.http.get('http://localhost:3000/coordenador').map(res => res.json())
       .subscribe(res => {
-        console.log(res)
         this.items = res;
       }, (error) => {
         console.error("erro " + error);
@@ -67,8 +66,8 @@ export class RemoverUsuariosPage {
       title: 'Edita Perfil',
       inputs: [
         {
-          name: 'nome',
-          placeholder: 'nome',
+          name: 'name',
+          placeholder: 'name',
           value: user.name
         },
         {
@@ -98,14 +97,22 @@ export class RemoverUsuariosPage {
         {
           text: 'Salvar',
           handler: data => {
-            console.log('Saved clicked');
             let params: any = {
               name: data.name,
               cpf: data.cpf,
               email: data.email,
               password: data.password
             }
-            console.log(data);
+
+            console.log('Saved clicked');
+            
+            this.http.put('http://localhost:3000/coordenador/update', data).map(res => res.json())
+            .subscribe(res => {
+              this.inicializaLista();
+            }, (error) => {
+              console.log("erro " + error);
+            });
+
             /*this.service.updateData(params)
               .subscribe(
               data => {
@@ -114,6 +121,8 @@ export class RemoverUsuariosPage {
               },
               err => console.log(err)
               );*/
+
+
           }
         }
       ]

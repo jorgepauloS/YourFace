@@ -54,7 +54,7 @@ conexao.update = (tabela, data, callback) => {
   const { cpf, name, email, curso, dataNascimento, password} = data;
 
   conexao.findOne(tabela, cpf, (res)=>{
-    if(res.length>0){
+    if(res){
 
       let sql = "UPDATE "+tabela+" SET `name`=?, email=? ";
       let parametros = [name, email]
@@ -70,7 +70,7 @@ conexao.update = (tabela, data, callback) => {
       sql = sql.substring(0,(sql.length - 1));
       sql += " WHERE cpf=?";
       parametros.push(cpf);
-      
+
       conexao.query(sql, parametros, (err, result) => {
         if (err){
           console.log(err);
