@@ -18,6 +18,7 @@ import { HomeProfessorPage } from '../pages/home-professor/home-professor';
 import { ServiceProvider } from '../providers/service/service';
 import { HttpModule } from '@angular/http';
 import { RemoverUsuariosPage } from '../pages/remover-usuarios/remover-usuarios';
+import { ListarAlunosPage } from '../pages/listar-alunos/listar-alunos';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { RemoverUsuariosPage } from '../pages/remover-usuarios/remover-usuarios'
     RelatorioPage,
     HomeProfessorPage,
     LoginPage,
-    RemoverUsuariosPage
+    RemoverUsuariosPage,
+    ListarAlunosPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { RemoverUsuariosPage } from '../pages/remover-usuarios/remover-usuarios'
     RelatorioPage,
     HomeProfessorPage,
     LoginPage,
-    RemoverUsuariosPage
+    RemoverUsuariosPage,
+    ListarAlunosPage
   ],
   providers: [
     StatusBar,
