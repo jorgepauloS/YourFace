@@ -23,7 +23,7 @@ export class RemoverUsuariosPage {
   }
 
   inicializaLista() {
-    this.http.get('http://localhost:3000/coordenador/ativo').map(res => res.json())
+    this.http.get('http://localhost:3000/coordenador').map(res => res.json())
       .subscribe(res => {
         console.log(res)
         this.lista = res;
@@ -33,18 +33,7 @@ export class RemoverUsuariosPage {
       }, (error) => {
         console.error("erro " + error);
       });
-      
-    this.http.get('http://localhost:3000/professor/ativo').map(response => response.json())
-      .subscribe(response => {
-        for (const key in response) {
-          if (response.hasOwnProperty(key)) {
-            this.lista.push(response[key]);
-          }
-        }
-        this.initializeItems();
-      }, (error) => {
-        console.error("erro " + error);
-      });
+    
       
   }
 
@@ -91,13 +80,6 @@ export class RemoverUsuariosPage {
             console.log('Deletar clicked');
 
             this.http.delete('http://localhost:3000/coordenador/' + data.cpf + '/delete').map(res => res.json())
-              .subscribe(res => {
-                console.log(res)
-                this.inicializaLista();
-              }, (error) => {
-                console.error("erro " + error);
-              });
-            this.http.delete('http://localhost:3000/professor/' + data.cpf + '/delete').map(res => res.json())
               .subscribe(res => {
                 console.log(res)
                 this.inicializaLista();
@@ -155,13 +137,6 @@ export class RemoverUsuariosPage {
               password: data.password
             }
             this.http.put('http://localhost:3000/coordenador/update', data).map(res => res.json())
-              .subscribe(res => {
-                console.log(data);
-                this.inicializaLista();
-              }, (error) => {
-                console.log("erro " + error);
-              });
-            this.http.put('http://localhost:3000/professor/update', data).map(res => res.json())
               .subscribe(res => {
                 console.log(data);
                 this.inicializaLista();

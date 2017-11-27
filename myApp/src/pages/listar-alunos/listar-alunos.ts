@@ -19,7 +19,7 @@ export class ListarAlunosPage {
   }
 
   inicializaLista() {
-    this.http.get('http://localhost:3000/alunos/ativo').map(res => res.json())
+    this.http.get('http://localhost:3000/alunos').map(res => res.json())
       .subscribe(res => {
         console.log(res)
         this.lista = res;

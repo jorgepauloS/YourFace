@@ -9,7 +9,7 @@ const conexao = mysql.createConnection({
 
 conexao.findAll = (tabela, callback) =>{
 	let data;
-	conexao.query("SELECT * FROM "+tabela, function (err, result, fields) {
+  conexao.query("SELECT * FROM " + tabela +' WHERE `ativo`=true', function (err, result, fields) {
 		let data;
 		if (err)
 			return callback(err);
@@ -22,27 +22,15 @@ conexao.findOne = (tabela, codigo, callback) =>{
 	let data = {};
 	codigo = codigo;
 	if (codigo) {
-		conexao.query('SELECT * FROM '+tabela+' WHERE `cpf`=?', [codigo], function (err, result, fields) {
+    conexao.query('SELECT * FROM ' + tabela + ' WHERE `cpf`=? and `ativo`=true', [codigo], function (err, result, fields) {
 			if (err)
 				return callback(err);
 			else{
 				return callback(result[0]);
 			}
-		});
+    }); 
 	}
 }
-conexao.findAtivo = (tabela, callback) =>{
-  let data;
-  conexao.query("SELECT * FROM " + tabela + ' WHERE `ativo`=?', [true], function (err, result, fields) {
-    let data;
-    if (err)
-      return callback(err);
-    else {
-      return callback(result);
-    }
-  });
-}
-
 conexao.login = (tabela, data ,callback) =>{
 	const {cpf, password} = data;
 	const sql = "SELECT * FROM "+tabela+" WHERE cpf=? and password=?";
@@ -100,14 +88,17 @@ conexao.update = (tabela, data, callback) => {
 conexao.create = (tabela, data, callback) => {
   const { cpf, name, email, curso, dataNascimento, password} = data;
 
+  console.log(data);
+
   let sql = "INSERT INTO `"+tabela+"` (`cpf`, `name`, `email` "
   let parametros = [cpf, name, email];
+  console.log(cpf, name, email, curso, dataNascimento, password)
 
   if(password){
     sql +=",`password`,";
     parametros.push(password);
   }if(curso && dataNascimento){
-    sql +="`curso`, `dataNascimento`,";
+    sql +=", `curso`, `dataNascimento`,";
     parametros.push(curso);
     parametros.push(dataNascimento);
   }
@@ -118,6 +109,8 @@ conexao.create = (tabela, data, callback) => {
   }
   sql = sql.substring(0,(sql.length - 1));
   sql +=")";
+
+  console.log(sql)
 
   conexao.query(sql, parametros, (err, result) => {
     if (err)
