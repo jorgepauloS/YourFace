@@ -147,7 +147,14 @@ app.route('/professor/update').put((req, res)=>{
 
 
 /* POST Login coordenado */
-app.route('/login').post((req, res)=>{
+app.route('/login/coordenado').post((req, res)=>{
+	const data = req.body;
+	dao.login('tb_coord', data,(result)=>{
+		res.send(JSON.stringify(result));
+	});
+});
+/* POST Login coordenado */
+app.route('/login/professor').post((req, res)=>{
 	const data = req.body;
 	dao.login('tb_coord', data,(result)=>{
 		res.send(JSON.stringify(result));
