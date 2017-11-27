@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the HomeProfessorPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -17,9 +11,18 @@ export class HomeProfessorPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
+ 
+ /* abrirRelatorio() {
+    this.navCtrl.push()
+  } */
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomeProfessorPage');
+  sair() {
+    this.navCtrl.setRoot(LoginPage)
   }
 
+ /* listarAlunos() {
+    this.navCtrl.push(ListarTurmaPage)
+  }
+*/
 }
+

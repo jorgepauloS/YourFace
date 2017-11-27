@@ -4,6 +4,7 @@ import { CadastroPage } from '../cadastro/cadastro';
 import { HomePage } from '../home/home';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { HomeProfessorPage } from '../home-professor/home-professor';
 
 @IonicPage()
 @Component({
@@ -16,7 +17,6 @@ export class LoginPage {
     password: null
   };
 
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -25,32 +25,33 @@ export class LoginPage {
     public http: Http
   ) {
   }
-  fazerLogin() {
-    //Falta implementar por causa do banco de dados.
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
 
   //teste do login, depois não servirá mais.
   goToHome() {
     //console.log(this.userCredenciais)
-    this.http.post('http://localhost:3000/login', this.userCredenciais).map(res => res.json())
+    this.http.post('http://localhost:3000/login/coordenador', this.userCredenciais).map(res => res.json())
       .subscribe(res => {
         console.log(res);
         if (res.token) {
           this.showAlert()
           this.navCtrl.push(HomePage);
-        
         }else{
-          this.showAlertErro()
+          this.http.post('http://localhost:3000/login/professor', this.userCredenciais).map(res => res.json())
+            .subscribe(res => {
+              console.log(res);
+              if (res.token) {
+                this.showAlert()
+                this.navCtrl.push(HomeProfessorPage);
+              } else {
+                this.showAlertErro()
+              }
+            }, (error) => {
+              console.log("erro " + error);
+            });
         }
       }, (error) => {
-        
         console.log("erro " + error);
-        
       });
-
   }
 
   showAlert() {
