@@ -5,9 +5,45 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
+
+
+<ion-card>
+  <ion-card-header>
+    <img src="assets/imgs/login.png" alt="">
+  </ion-card-header>
+  <ion-card-content>
+
+  <ion-list no-line>
+    <ion-item>
+      <ion-label></ion-label>
+      <ion-input type="text" [(ngModel)]="userCredenciais.cpf" placeholder="CPF" class="inputIdade" autofocus required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label></ion-label>
+      <ion-input type="password" [(ngModel)]="userCredenciais.password" placeholder="Senha" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Manter-se logado?</ion-label>
+      <ion-toggle [(ngModel)]="pepperoni"></ion-toggle>
+    </ion-item>
+
+
+    <button ion-button block outline color="light" (click)="goToHomeCoordenador()">Login como coordenador</button>
+
+    <button ion-button block outline color="" (click)="goToHomeProfessor()">Login como professor</button>
+
+  </ion-list>
+
+
+
+  </ion-card-content>
+</ion-card>
+
+<!--
   <img src="assets/imgs/login.png" alt="">
-  <ion-list>
+  <ion-list no-line>
     <ion-item>
       <ion-label floating>Cpf</ion-label>
       <ion-input type="text" [(ngModel)]="userCredenciais.cpf" class="inputIdade" autofocus required></ion-input>
@@ -29,4 +65,6 @@
     <button ion-button block (click)="goToHomeProfessor()">Login como professor</button>
     <br>
   </ion-list>
+-->
+
 </ion-content>
