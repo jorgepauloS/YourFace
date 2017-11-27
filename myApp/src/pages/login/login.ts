@@ -26,8 +26,21 @@ export class LoginPage {
   ) {
   }
 
-  //teste do login, depois não servirá mais.
-  goToHome() {
+  goToHomeProfessor(){
+    this.http.post('http://localhost:3000/login/professor', this.userCredenciais).map(res => res.json())
+      .subscribe(res => {
+        console.log(res);
+        if (res.token) {
+          this.showAlert()
+          this.navCtrl.push(HomeProfessorPage);
+        } else {
+          this.showAlertErro()
+        }
+      }, (error) => {
+        console.log("erro " + error);
+      });
+  }  
+  goToHomeCoordenador() {
     //console.log(this.userCredenciais)
     this.http.post('http://localhost:3000/login/coordenador', this.userCredenciais).map(res => res.json())
       .subscribe(res => {
@@ -36,18 +49,7 @@ export class LoginPage {
           this.showAlert()
           this.navCtrl.push(HomePage);
         }else{
-          this.http.post('http://localhost:3000/login/professor', this.userCredenciais).map(res => res.json())
-            .subscribe(res => {
-              console.log(res);
-              if (res.token) {
-                this.showAlert()
-                this.navCtrl.push(HomeProfessorPage);
-              } else {
-                this.showAlertErro()
-              }
-            }, (error) => {
-              console.log("erro " + error);
-            });
+          this.showAlertErro()
         }
       }, (error) => {
         console.log("erro " + error);

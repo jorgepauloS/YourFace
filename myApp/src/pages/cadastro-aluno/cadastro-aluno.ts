@@ -30,12 +30,15 @@ export class CadastroAlunoPage {
   }
   getPhoto(type) {
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
+
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       sourceType: type == "picture" ? this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-      correctOrientation: true
+      correctOrientation: true,
+      targetHeight: 400,
+      targetWidth: 400
     };
 
     this.camera.getPicture(options).then((imageData) => {
@@ -69,6 +72,7 @@ export class CadastroAlunoPage {
   }
 
   cadastrarEstudante() {
+    console.log(this.foto);
     var name = this.dados.name;
     var cpf = this.dados.cpf;
     var email = this.dados.email;

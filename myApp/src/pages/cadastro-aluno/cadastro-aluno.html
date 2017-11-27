@@ -43,7 +43,6 @@
 
   <ion-card>
 
-    <img src="foto" />
     <ion-row no-padding>
       <ion-col>
         <button ion-button clear small color="primary" icon-left (click)="getPhoto('picture')">
@@ -62,5 +61,4 @@
     <br>
     <button ion-button block (click)="goToHomePage2()">Cancelar</button>
   </div>  
-
-</ion-content>
+  <img src="{{foto}}" width="80%" height="80%"/></ion-content>

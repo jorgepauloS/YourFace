@@ -6,7 +6,7 @@
 
 
 <ion-content padding>
-<img src="assets/imgs/login.png" alt="" >
+  <img src="assets/imgs/login.png" alt="">
   <ion-list>
     <ion-item>
       <ion-label floating>Cpf</ion-label>
@@ -23,7 +23,10 @@
     </ion-item>
 
     <br>
-    <button ion-button block (click)="goToHome()">Login</button>
+    <button ion-button block (click)="goToHomeCoordenador()">Login como coordenador</button>
+    <br>
+    <br>
+    <button ion-button block (click)="goToHomeProfessor()">Login como professor</button>
     <br>
   </ion-list>
 </ion-content>
