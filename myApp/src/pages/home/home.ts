@@ -7,6 +7,7 @@ import { CadastroProfessorPage } from '../cadastro-professor/cadastro-professor'
 import { CadastroAlunoPage } from '../cadastro-aluno/cadastro-aluno';
 import { RemoverUsuariosPage } from '../remover-usuarios/remover-usuarios';
 import { ListarAlunosPage } from '../listar-alunos/listar-alunos';
+import { ListarProfessorPage } from '../listar-professor/listar-professor';
 
 
 @Component({
@@ -46,5 +47,8 @@ export class HomePage {
 
   listarAlunos(){
     this.navCtrl.push(ListarAlunosPage)
+  }
+  listarProfessor() {
+    this.navCtrl.push(ListarProfessorPage)
   }
 }

@@ -20,6 +20,7 @@ import { HttpModule } from '@angular/http';
 import { RemoverUsuariosPage } from '../pages/remover-usuarios/remover-usuarios';
 import { ListarAlunosPage } from '../pages/listar-alunos/listar-alunos';
 import { Camera } from "@ionic-native/camera";
+import { ListarProfessorPage } from '../pages/listar-professor/listar-professor';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { Camera } from "@ionic-native/camera";
     HomeProfessorPage,
     LoginPage,
     RemoverUsuariosPage,
-    ListarAlunosPage
+    ListarAlunosPage,
+    ListarProfessorPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { Camera } from "@ionic-native/camera";
     HomeProfessorPage,
     LoginPage,
     RemoverUsuariosPage,
-    ListarAlunosPage
+    ListarAlunosPage,
+    ListarProfessorPage
   ],
   providers: [
     StatusBar,

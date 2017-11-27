@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { HomePage } from '../home/home';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-//import { Camera, CameraOptions } from "@ionic-native/camera";
+import { Camera, CameraOptions } from "@ionic-native/camera";
 
 
 @IonicPage()
@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
   templateUrl: 'cadastro-aluno.html',
 })
 export class CadastroAlunoPage {
-  //foto: any;
+  foto: any;
   public dados = {
     name: null,
     cpf: null,
@@ -25,10 +25,10 @@ export class CadastroAlunoPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCadastroCtrl: AlertController,
-    //public camera: Camera,
+    public camera: Camera,
     public http: Http) {
   }
-  /*getPhoto(type) {
+  getPhoto(type) {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -45,7 +45,7 @@ export class CadastroAlunoPage {
     }, (err) => {
       // Handle error
     });
-  }*/
+  }
 
   TestaCPF(strCPF) {
     let Soma;
