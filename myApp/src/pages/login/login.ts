@@ -15,6 +15,7 @@ export class LoginPage {
   public userCredenciais = {
     cpf: null,
     password: null
+    
   };
 
   constructor(
