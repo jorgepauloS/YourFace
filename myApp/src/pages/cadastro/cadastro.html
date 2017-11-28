@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar text-center color="primary">
+    <ion-title>Cadastro de usuário(diretor)</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Nome Completo:</ion-label>
+      <ion-input type="text" [(ngModel)]="dados.name" id="inputNomeUsuario"  autofocus required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>CPF:</ion-label>
+      <ion-input type="number" maxlength="11" [(ngModel)]="dados.cpf" class="inputCpf"   required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>E-mail:</ion-label>
+      <ion-input type="mail" [(ngModel)]="dados.email" class="inputEmail"   required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating> Confirme e-mail:</ion-label>
+      <ion-input type="mail" [(ngModel)]="dados.emailConf" class="inputEmail" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Senha:</ion-label>
+      <ion-input type="password" [(ngModel)]="dados.password" class="inputSenha" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Confirme senha:</ion-label>
+      <ion-input type="password" [(ngModel)]="dados.passwordConf" class="inputSenha" required></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button ion-button block (click)="fazerCadastro()">Cadastrar</button>
+    <br>
+    <button ion-button block (click)="goToHomePage2()">Cancelar</button>
+  </div>
+</ion-content>
