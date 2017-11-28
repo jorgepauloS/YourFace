@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar text-center color="primary">
+    <ion-title text-center >Cadastro de aluno</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>{{titulos}}</h1>
+  <ion-list> 
+    
+    <ion-item>
+      <ion-label floating>Nome Completo:</ion-label>
+      <ion-input type="text" [(ngModel)]="dados.name" id="inputName" autofocus required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>CPF:</ion-label>
+      <ion-input type="number" maxlength="11" [(ngModel)]="dados.cpf" class="inputCpf" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>E-mail:</ion-label>
+      <ion-input type="mail" [(ngModel)]="dados.email" class="inputEmail" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating> Confirme e-mail:</ion-label>
+      <ion-input type="mail" [(ngModel)]="dados.emailConf" class="inputEmail" required></ion-input>
+    </ion-item>
+
+    
+    <ion-item>
+      <ion-label floating>Curso/série:</ion-label>
+      <ion-input type="text" [(ngModel)]="dados.curso" class="inputCurso" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Data Nascimento:</ion-label>
+      <ion-input type="date" [(ngModel)]="dados.dataNascimento" class="inputDataNascimento" required></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-card>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="primary" icon-left (click)="getPhoto('picture')">
+          <ion-icon name='camera'></ion-icon>Câmera</button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="primary" icon-left (click)="getPhoto('gallery')">
+          <ion-icon name='albums'></ion-icon>Galeria</button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+  <div padding>
+    <button ion-button block (click)="cadastrarEstudante()">Cadastrar</button>
+    <br>
+    <button ion-button block (click)="goToHomePage2()">Cancelar</button>
+  </div>  
+  <img src="{{foto}}" width="80%" height="80%"/></ion-content>
