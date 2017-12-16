@@ -3,6 +3,7 @@ import ProfController from '../controllers/professores';
 export default(app)=>{
 	const profController = new ProfController(app.datasource.models.Professor);
 	app.route('/professores')
+	.all(app.auth.authenticate())
 	.get((req, res)=> {
 		profController.getAll().then(response => {
 			res.status(response.statusCode)
@@ -18,6 +19,7 @@ export default(app)=>{
 	});
 
 	app.route('/professores/:cpf')
+	.all(app.auth.authenticate())
 	.get((req, res)=> {
 		profController.getById(req.params).then(response => {
 			res.status(response.statusCode)

@@ -26,7 +26,7 @@ export class ListarAlunosPage {
   }
 
   inicializaLista() {
-    this.http.get(this.UrlApi+'alunos').map(res => res.json())
+    this.http.get(this.UrlApi+'alunos',this.createRequestOptions()).map(res => res.json())
       .subscribe(res => {
         console.log(res)
         this.lista = res;
@@ -127,7 +127,7 @@ export class ListarAlunosPage {
           text: 'Salvar',
           handler: data => {
     
-            this.http.put(this.UrlApi+'alunos/'+data.cpf, data,this.createRequestOptions()).map(res => res.json())
+            this.http.put(this.UrlApi+'alunos/'+data.cpf, data, this.createRequestOptions()).map(res => res.json())
               .subscribe(res => {
          
                 this.inicializaLista();

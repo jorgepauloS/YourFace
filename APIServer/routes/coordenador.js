@@ -7,6 +7,7 @@ export default(app)=>{
 
 
 	app.route('/coordenador')
+	.all(app.auth.authenticate())
 	.get((req, res)=> {
 		coordenadorController.getAll().then(response => {
 			res.status(response.statusCode)
@@ -23,6 +24,7 @@ export default(app)=>{
 
 
 	app.route('/coordenador/:cpf')
+	.all(app.auth.authenticate())
 	.get((req, res)=> {
 		coordenadorController.getById(req.params).then(response => {
 			res.status(response.statusCode)

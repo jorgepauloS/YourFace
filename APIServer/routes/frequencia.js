@@ -6,6 +6,7 @@ export default(app)=>{
 
 
 	app.route('/frequencia')
+	.all(app.auth.authenticate())
 	.get((req, res)=> {
 		frequenciaController.getAll().then(response => {
 			res.status(response.statusCode)
@@ -21,6 +22,7 @@ export default(app)=>{
 	});
 
 	app.route('/frequencia/:cpf_aluno')
+	.all(app.auth.authenticate())
 	.get((req, res)=> {
 		frequenciaController.getById(req.params).then(response => {
 			res.status(response.statusCode)
@@ -41,6 +43,7 @@ export default(app)=>{
 		});
 	});
 	app.route('/frequencia/:id_freq')
+	.all(app.auth.authenticate())
 	.get((req, res)=> {
 		frequenciaController.getById(req.params).then(response => {
 			res.status(response.statusCode)
