@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Camera, CameraOptions } from "@ionic-native/camera";
-
+import "rxjs/add/operator/do";
 
 @IonicPage()
 @Component({
@@ -12,7 +11,9 @@ import { Camera, CameraOptions } from "@ionic-native/camera";
   templateUrl: 'cadastro-aluno.html',
 })
 export class CadastroAlunoPage {
-  foto: any;
+
+  UrlApi = "http://localhost:3000/";
+
   public dados = {
     name: null,
     cpf: null,
@@ -25,29 +26,7 @@ export class CadastroAlunoPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCadastroCtrl: AlertController,
-    public camera: Camera,
     public http: Http) {
-  }
-  getPhoto(type) {
-    const options: CameraOptions = {
-      quality: 50,
-
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      sourceType: type == "picture" ? this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-      correctOrientation: true,
-      targetHeight: 400,
-      targetWidth: 400
-    };
-
-    this.camera.getPicture(options).then((imageData) => {
-
-      this.foto = 'data:image/jpeg;base64,' + imageData;
-
-    }, (err) => {
-      // Handle error
-    });
   }
 
   TestaCPF(strCPF) {
@@ -72,7 +51,7 @@ export class CadastroAlunoPage {
   }
 
   cadastrarEstudante() {
-    console.log(this.foto);
+   
     var name = this.dados.name;
     var cpf = this.dados.cpf;
     var email = this.dados.email;
@@ -122,11 +101,9 @@ export class CadastroAlunoPage {
       dataNascimento: dataNascimento
 
     };
-    this.http.post('http://localhost:3000/alunos/create', usuarioEstudante).map(res => res.json())
+    this.http.post(this.UrlApi+'alunos', usuarioEstudante, this.createRequestOptions()).map(res => res.json())
       .subscribe(res => {
-        console.log(res);
         if (res.error) {
-          console.log(usuarioEstudante)
           this.showAlertErro()
         } else {
           this.showAlert()
@@ -157,5 +134,10 @@ export class CadastroAlunoPage {
     });
     alert.present();
   }
-
+  private createRequestOptions() {
+    let headers = new Headers();
+    headers.append("Authorization", 'JWT '+ localStorage.getItem("token"));
+    headers.append("Content-Type", "application/json");
+    return new RequestOptions({ headers: headers });
+  }
 }

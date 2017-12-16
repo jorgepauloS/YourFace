@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { CadastroPage } from '../cadastro/cadastro';
 import { HomePage } from '../home/home';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HomeProfessorPage } from '../home-professor/home-professor';
 
@@ -12,12 +12,13 @@ import { HomeProfessorPage } from '../home-professor/home-professor';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  UrlApi:any = 'http://localhost:3000/';
+  
   public userCredenciais = {
     cpf: null,
     password: null
     
   };
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -28,30 +29,35 @@ export class LoginPage {
   }
 
   goToHomeProfessor(){
-    this.http.post('http://localhost:3000/login/professor', this.userCredenciais).map(res => res.json())
+    this.http.post(this.UrlApi+'login/professores', this.userCredenciais).map(res => res.json())
       .subscribe(res => {
-        console.log(res);
+        console.log(res)
         if (res.token) {
+          localStorage.setItem("token", res.token);
           this.showAlert()
           this.navCtrl.push(HomeProfessorPage);
         } else {
           this.showAlertErro()
         }
+
+
       }, (error) => {
         console.log("erro " + error);
       });
   }  
   goToHomeCoordenador() {
-    //console.log(this.userCredenciais)
-    this.http.post('http://localhost:3000/login/coordenador', this.userCredenciais).map(res => res.json())
+    this.http.post(this.UrlApi+'login/coordenador', this.userCredenciais).map(res => res.json())
       .subscribe(res => {
-        console.log(res);
+        console.log(res)
         if (res.token) {
+          localStorage.setItem("token", res.token);
           this.showAlert()
           this.navCtrl.push(HomePage);
         }else{
           this.showAlertErro()
         }
+
+
       }, (error) => {
         console.log("erro " + error);
       });
@@ -81,7 +87,5 @@ export class LoginPage {
       
     });
     loader.present();
-
-
   }
 }

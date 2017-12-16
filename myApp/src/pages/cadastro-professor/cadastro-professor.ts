@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
+import "rxjs/add/operator/do";
 
 @IonicPage()
 @Component({
@@ -10,6 +11,7 @@ import 'rxjs/add/operator/map';
   templateUrl: 'cadastro-professor.html',
 })
 export class CadastroProfessorPage {
+  UrlApi = "http://localhost:3000/";
 
   public dados = {
     nomeUsuario: null,
@@ -19,6 +21,7 @@ export class CadastroProfessorPage {
     email: null,
     emailConf: null
   };
+
   TestaCPF(strCPF) {
     let Soma;
     let Resto;
@@ -105,7 +108,7 @@ export class CadastroProfessorPage {
       password: senha,
       email: email
     };
-    this.http.post('http://localhost:3000/professor/create', usuarioProfessor).map(res => res.json())
+    this.http.post(this.UrlApi+'professores', usuarioProfessor, this.createRequestOptions()).map(res => res.json())
       .subscribe(res => {
         console.log(res);
         if (res.error) {
@@ -141,6 +144,13 @@ export class CadastroProfessorPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  private createRequestOptions() {
+    let headers = new Headers();
+    headers.append("Authorization", 'JWT '+ localStorage.getItem("token"));
+    headers.append("Content-Type", "application/json");
+    return new RequestOptions({ headers: headers });
   }
 
 }

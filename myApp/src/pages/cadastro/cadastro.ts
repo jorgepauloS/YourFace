@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
+import "rxjs/add/operator/do";
 
 @IonicPage()
 @Component({
@@ -11,6 +12,24 @@ import 'rxjs/add/operator/map';
   templateUrl: 'cadastro.html',
 })
 export class CadastroPage {
+
+  UrlApi = "http://localhost:3000/";
+  public dados = {
+    name: null,
+    cpf: null,
+    password: null,
+    passwordConf: null,
+    email: null,
+    emailConf: null,
+  };
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCadastroCtrl: AlertController,
+    public http:Http) {
+  }
+
   TestaCPF(strCPF) {
     let Soma;
     let Resto;
@@ -32,20 +51,6 @@ export class CadastroPage {
     return true;
   }
 
-  public dados = {
-    name: null,
-    cpf: null,
-    password: null,
-    passwordConf: null,
-    email: null,
-    emailConf: null,
-  };
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public alertCadastroCtrl: AlertController,
-    public http:Http) {
-  }
   fazerCadastro(): boolean {
     // Pega as informações do usuário
     var name = this.dados.name;
@@ -105,9 +110,8 @@ export class CadastroPage {
       email: email,
     };
 
-    this.http.post('http://localhost:3000/coordenador/create', usuarioDiretor).map(res => res.json())
+    this.http.post(this.UrlApi+'coordenador', usuarioDiretor, this.createRequestOptions()).map(res => res.json())
     .subscribe(res => {
-      console.log(res);
       if (res.error){
       this.showAlertErro()
       }else{
@@ -139,4 +143,12 @@ export class CadastroPage {
     });
     alert.present();
   }
+
+  private createRequestOptions() {
+    let headers = new Headers();
+    headers.append("Authorization", 'JWT '+ localStorage.getItem("token"));
+    headers.append("Content-Type", "application/json");
+    return new RequestOptions({ headers: headers });
+  }
+
 }
