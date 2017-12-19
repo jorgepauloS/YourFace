@@ -1,19 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http, Headers, RequestOptions} from '@angular/http';
-<<<<<<< HEAD
 import { List } from 'ionic-angular/components/list/list';
 import 'rxjs/add/operator/map';
 import "rxjs/add/operator/do";
 
-=======
-import 'rxjs/add/operator/map';
-import "rxjs/add/operator/do";
-
-
-
-
->>>>>>> 41dbc599341086fb98c2311c62b0e6e84d3516c8
 @IonicPage()
 @Component({
   selector: 'page-listar-professor',
@@ -63,7 +54,7 @@ export class ListarProfessorPage {
       })
     }
   }
-  
+
   deletarUser(user) {
     let prompt = this.alertCtrl.create({
       title: 'Deletar professor!',
@@ -86,10 +77,6 @@ export class ListarProfessorPage {
           text: 'Deletar',
           handler: data => {
             console.log('Deletar clicked');
-<<<<<<< HEAD
-=======
-
->>>>>>> 41dbc599341086fb98c2311c62b0e6e84d3516c8
             this.http.delete(this.UrlApi+'professores/' + data.cpf, this.createRequestOptions()).map(res => res.json())
               .subscribe(res => {
                 this.inicializaLista();
@@ -103,11 +90,8 @@ export class ListarProfessorPage {
     prompt.present();
   }
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 41dbc599341086fb98c2311c62b0e6e84d3516c8
   editarUser(user) {
     let prompt = this.alertCtrl.create({
       title: 'Edita Perfil',

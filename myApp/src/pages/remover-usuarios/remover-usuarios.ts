@@ -2,10 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { List } from 'ionic-angular/components/list/list';
 import { Http, Headers, RequestOptions} from '@angular/http';
-<<<<<<< HEAD
-=======
-import { LoginPage } from '../login/login';
->>>>>>> 41dbc599341086fb98c2311c62b0e6e84d3516c8
 import 'rxjs/add/operator/map';
 import "rxjs/add/operator/do";
 
@@ -20,7 +16,7 @@ export class RemoverUsuariosPage {
   UrlApi = "http://localhost:3000/";
   items: any;
   lista: any;
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -95,7 +91,7 @@ export class RemoverUsuariosPage {
     });
     prompt.present();
   }
-  
+
   editarUser(user) {
     let prompt = this.alertCtrl.create({
       title: 'Edita Perfil',
@@ -133,7 +129,7 @@ export class RemoverUsuariosPage {
           text: 'Salvar',
           handler: data => {
             console.log('Saved clicked');
-   
+
             this.http.put(this.UrlApi+'coordenador/'+data.cpf, data, this.createRequestOptions()).map(res => res.json())
               .subscribe(res => {
                 this.inicializaLista();
