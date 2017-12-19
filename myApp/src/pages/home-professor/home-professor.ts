@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
@@ -11,18 +12,16 @@ export class HomeProfessorPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
- 
- /* abrirRelatorio() {
-    this.navCtrl.push()
-  } */
+
+  goToChamadaPage() {console.log("teste");}
+
+  goToFrequenciaPage() {console.log("teste");}
+
+  abrirRelatorio() {console.log("teste");}
 
   sair() {
-    this.navCtrl.setRoot(LoginPage)
+    localStorage.clear();
+    this.navCtrl.setRoot(LoginPage);
   }
-
- /* listarAlunos() {
-    this.navCtrl.push(ListarTurmaPage)
-  }
-*/
 }
 

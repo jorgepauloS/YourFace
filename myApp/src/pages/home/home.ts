@@ -5,9 +5,12 @@ import { LoginPage } from '../login/login';
 import { RelatorioPage } from '../relatorio/relatorio';
 import { CadastroProfessorPage } from '../cadastro-professor/cadastro-professor';
 import { CadastroAlunoPage } from '../cadastro-aluno/cadastro-aluno';
-import { RemoverUsuariosPage } from '../remover-usuarios/remover-usuarios';
+
 import { ListarAlunosPage } from '../listar-alunos/listar-alunos';
 import { ListarProfessorPage } from '../listar-professor/listar-professor';
+
+import { RemoverUsuariosPage } from '../remover-usuarios/remover-usuarios';
+
 
 
 @Component({
@@ -18,8 +21,7 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    public alertHomeCtrl:AlertController    
-  ) {
+    public alertHomeCtrl:AlertController) {
   }
 
   abrirCadastroAluno(){
@@ -32,12 +34,13 @@ export class HomePage {
   abrirCadastroProfessor(){
     this.navCtrl.push(CadastroProfessorPage)
   }
-  
+
   abrirRelatorio(){
     this.navCtrl.push(RelatorioPage)
   }
 
   sair(){
+    localStorage.clear();
     this.navCtrl.setRoot(LoginPage)
   }
 

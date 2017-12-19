@@ -1,12 +1,30 @@
 <ion-header>
-
   <ion-navbar color="primary">
     <ion-title>Relatório</ion-title>
   </ion-navbar>
-
+<ion-toolbar color="primary">
+  <ion-searchbar (input)="getItems($event)"></ion-searchbar>
+</ion-toolbar>
 </ion-header>
 
+<ion-content>
+<ion-list *ngFor="let user of items ">
+  <ion-item-sliding>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/imgs/intro01.png">
+      </ion-avatar>
+      <p>Cpf: {{user.cpf_aluno}}</p>
+      <p>Data: {{user.data|date:'dd/MM/yyyy, HH:mm:ss Z'}}</p>
+    </ion-item>
 
-<ion-content padding>
+    <ion-item-options side="right">
+      <button ion-button color="danger" (click)="deletarUser(user)">Deletar</button>
+    </ion-item-options>
 
+    <ion-item-options side="left">
+      <button ion-button color="secondary" (click)="editarUser(user)">Editar</button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
 </ion-content>

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
-import { Http, Headers } from '@angular/http';
-import 'rxjs/add/operator/map';
 import { List } from 'ionic-angular/components/list/list';
+import { Http, Headers, RequestOptions} from '@angular/http';
+import 'rxjs/add/operator/map';
+import "rxjs/add/operator/do";
+
 
 
 @IonicPage()
@@ -12,20 +13,21 @@ import { List } from 'ionic-angular/components/list/list';
   templateUrl: 'remover-usuarios.html',
 })
 export class RemoverUsuariosPage {
+  UrlApi = "http://localhost:3000/";
   items: any;
   lista: any;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public http: Http) {
-    this.inicializaLista()
+    this.inicializaLista();
   }
 
   inicializaLista() {
-    this.http.get('http://localhost:3000/coordenador').map(res => res.json())
+    this.http.get(this.UrlApi+'coordenador', this.createRequestOptions()).map(res => res.json())
       .subscribe(res => {
-        console.log(res)
         this.lista = res;
         if(res[0]!= null){
           this.initializeItems();
@@ -33,8 +35,6 @@ export class RemoverUsuariosPage {
       }, (error) => {
         console.error("erro " + error);
       });
-    
-      
   }
 
   initializeItems() {
@@ -79,20 +79,19 @@ export class RemoverUsuariosPage {
           handler: data => {
             console.log('Deletar clicked');
 
-            this.http.delete('http://localhost:3000/coordenador/' + data.cpf + '/delete').map(res => res.json())
+            this.http.delete(this.UrlApi+'coordenador/' + data.cpf, this.createRequestOptions()).map(res => res.json())
               .subscribe(res => {
-                console.log(res)
                 this.inicializaLista();
               }, (error) => {
                 console.error("erro " + error);
               });
-
           }
         }
       ]
     });
     prompt.present();
   }
+  
   editarUser(user) {
     let prompt = this.alertCtrl.create({
       title: 'Edita Perfil',
@@ -130,24 +129,24 @@ export class RemoverUsuariosPage {
           text: 'Salvar',
           handler: data => {
             console.log('Saved clicked');
-            let params: any = {
-              name: data.name,
-              cpf: data.cpf,
-              email: data.email,
-              password: data.password
-            }
-            this.http.put('http://localhost:3000/coordenador/update', data).map(res => res.json())
+   
+            this.http.put(this.UrlApi+'coordenador/'+data.cpf, data, this.createRequestOptions()).map(res => res.json())
               .subscribe(res => {
-                console.log(data);
                 this.inicializaLista();
               }, (error) => {
                 console.log("erro " + error);
               });
-
+            }
           }
-        }
-      ]
-    });
+        ]
+      });
     prompt.present();
+  }
+
+  private createRequestOptions() {
+    let headers = new Headers();
+    headers.append("Authorization", 'JWT '+ localStorage.getItem("token"));
+    headers.append("Content-Type", "application/json");
+    return new RequestOptions({ headers: headers });
   }
 }

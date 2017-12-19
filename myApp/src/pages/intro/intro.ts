@@ -21,6 +21,7 @@ export class IntroPage {
   }
 
   goToLoginPage() {
+    localStorage.clear();
     this.navCtrl.push(LoginPage);
   }
 }

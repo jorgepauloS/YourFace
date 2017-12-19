@@ -1,29 +1,35 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { Http, Headers } from '@angular/http';
+import { List } from 'ionic-angular/components/list/list';
+import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
+import "rxjs/add/operator/do";
+
+
+
 @IonicPage()
 @Component({
   selector: 'page-listar-alunos',
   templateUrl: 'listar-alunos.html',
 })
 export class ListarAlunosPage {
+  UrlApi = "http://localhost:3000/";
   items: any;
   lista: any;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public http: Http) {
-    this.inicializaLista()
+    this.inicializaLista();
   }
 
   inicializaLista() {
-    this.http.get('http://localhost:3000/alunos').map(res => res.json())
+    this.http.get(this.UrlApi+'alunos',this.createRequestOptions()).map(res => res.json())
       .subscribe(res => {
-        console.log(res)
         this.lista = res;
-        if (res[0] != null) {
+        if(res[0]!= null){
           this.initializeItems();
         }
       }, (error) => {
@@ -73,7 +79,7 @@ export class ListarAlunosPage {
           handler: data => {
             console.log('Deletar clicked');
 
-            this.http.delete('http://localhost:3000/alunos/' + data.cpf + '/delete').map(res => res.json())
+            this.http.delete(this.UrlApi+'alunos/' + data.cpf, this.createRequestOptions()).map(res => res.json())
               .subscribe(res => {
                 console.log(res)
                 this.inicializaLista();
@@ -118,15 +124,9 @@ export class ListarAlunosPage {
         {
           text: 'Salvar',
           handler: data => {
-            console.log('Saved clicked');
-            let params: any = {
-              name: data.name,
-              cpf: data.cpf,
-              email: data.email,
-            }
-            this.http.put('http://localhost:3000/alunos/update', data).map(res => res.json())
+    
+            this.http.put(this.UrlApi+'alunos/'+data.cpf, data, this.createRequestOptions()).map(res => res.json())
               .subscribe(res => {
-                console.log(data);
                 this.inicializaLista();
               }, (error) => {
                 console.log("erro " + error);
@@ -136,5 +136,12 @@ export class ListarAlunosPage {
       ]
     });
     prompt.present();
+  }
+
+  private createRequestOptions() {
+    let headers = new Headers();
+    headers.append("Authorization", 'JWT '+ localStorage.getItem("token"));
+    headers.append("Content-Type", "application/json");
+    return new RequestOptions({ headers: headers });
   }
 }
