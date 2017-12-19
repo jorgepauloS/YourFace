@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { List } from 'ionic-angular/components/list/list';
 import { Http, Headers, RequestOptions} from '@angular/http';
+<<<<<<< HEAD
+=======
+import { LoginPage } from '../login/login';
+>>>>>>> 41dbc599341086fb98c2311c62b0e6e84d3516c8
 import 'rxjs/add/operator/map';
 import "rxjs/add/operator/do";
 

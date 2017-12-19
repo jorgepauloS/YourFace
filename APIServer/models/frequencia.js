@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* jshint indent: 1 */
 
 export default  (sequelize, DataTypes) => {
@@ -32,3 +33,32 @@ export default  (sequelize, DataTypes) => {
 		tableName: 'Frequencia'
 	});
 };
+=======
+export default (sequelize, DataType) => {
+	return sequelize.define("Frequencia", {
+		id_freq:{
+			type: DataType.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		data:{
+			type: DataType.DATE,
+			allowNull: false,
+		},
+		cpf_aluno:{
+			type: DataType.STRING,
+			allowNull: false,
+		},
+		presenca:{
+			type: DataType.ENUM('true','false'),
+			defaultValue: 'true'
+		}
+	},{
+		classMethods:{
+			associate:function(models){
+				console.log(models);
+			}
+		}
+	});
+}
+>>>>>>> 41dbc599341086fb98c2311c62b0e6e84d3516c8

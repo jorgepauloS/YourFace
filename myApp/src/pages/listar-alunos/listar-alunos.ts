@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+<<<<<<< HEAD
 import { List } from 'ionic-angular/components/list/list';
+=======
+>>>>>>> 41dbc599341086fb98c2311c62b0e6e84d3516c8
 import { Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import "rxjs/add/operator/do";
@@ -12,8 +15,13 @@ import "rxjs/add/operator/do";
   selector: 'page-listar-alunos',
   templateUrl: 'listar-alunos.html',
 })
+
 export class ListarAlunosPage {
+<<<<<<< HEAD
   UrlApi = "http://localhost:3000/";
+=======
+  UrlApi = 'http://localhost:3000/';
+>>>>>>> 41dbc599341086fb98c2311c62b0e6e84d3516c8
   items: any;
   lista: any;
   
@@ -92,6 +100,7 @@ export class ListarAlunosPage {
     });
     prompt.present();
   }
+
   editarUser(user) {
     let prompt = this.alertCtrl.create({
       title: 'Edita Perfil',
@@ -127,6 +136,10 @@ export class ListarAlunosPage {
     
             this.http.put(this.UrlApi+'alunos/'+data.cpf, data, this.createRequestOptions()).map(res => res.json())
               .subscribe(res => {
+<<<<<<< HEAD
+=======
+         
+>>>>>>> 41dbc599341086fb98c2311c62b0e6e84d3516c8
                 this.inicializaLista();
               }, (error) => {
                 console.log("erro " + error);
