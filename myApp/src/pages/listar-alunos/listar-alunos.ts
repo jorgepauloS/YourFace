@@ -14,11 +14,7 @@ import "rxjs/add/operator/do";
 })
 
 export class ListarAlunosPage {
-<<<<<<< HEAD
   UrlApi = "http://localhost:3000/";
-=======
-  UrlApi = 'http://localhost:3000/';
->>>>>>> 41dbc599341086fb98c2311c62b0e6e84d3516c8
   items: any;
   lista: any;
 
@@ -133,10 +129,6 @@ export class ListarAlunosPage {
 
             this.http.put(this.UrlApi+'alunos/'+data.cpf, data, this.createRequestOptions()).map(res => res.json())
               .subscribe(res => {
-<<<<<<< HEAD
-=======
-
->>>>>>> 41dbc599341086fb98c2311c62b0e6e84d3516c8
                 this.inicializaLista();
               }, (error) => {
                 console.log("erro " + error);
