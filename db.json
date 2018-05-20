@@ -1,10 +1,15 @@
 {
   "pratos": 
-    {
+    [
+      {
       "Id": 1,
       "Nome": "hello"
-    }
-  ,
+      },
+      {
+        "Id":2,
+        "Nome": "ola"
+      }
+  ],
   "profile": {
     "name": "typicode"
   }
